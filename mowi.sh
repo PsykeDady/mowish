@@ -23,7 +23,12 @@ export MOWISH_VERSION=0.1
 debug=0
 
 ## CONSTANTS
-SCRIPT_DIR="$(dirname "$0")"
+SCRIPT_DIR="$(readlink "$0")"
+if [ "$SCRIPT_DIR" == "" ]; then 
+	SCRIPT_DIR="$(dirname "$0")"
+else 
+	SCRIPT_DIR="$(dirname "$SCRIPT_DIR")"
+fi
 CONSTANTS_FILE="$SCRIPT_DIR/constants.sh"
 
 ## variables
@@ -190,6 +195,11 @@ function main() {
 	elif [[ ! "$others" =~ ^/.*$ ]]; then
 		debugmsg "${dbg_others_not_slash:?}"
 		others="$PWD/$others"
+	fi;
+
+	if [[ ! "$others" =~ ^/.*/$ ]]; then
+		debugmsg "${dbg_others_not_slash_after:?}"
+		others="$others/"
 	fi;
 
 	if [[ ! -d $others ]]; then 

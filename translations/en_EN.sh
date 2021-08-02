@@ -40,6 +40,7 @@ export dbg_actual_op=" actual operation = ";
 export dbg_actual_others=" others parameter = ";
 export dbg_others_empty="No directory specified. Using working directory"
 export dbg_others_not_slash="directory is not in absolute form. Updated with pwd"
+export dbg_others_not_slash_after="Indicated dir has not / at the end. Added"
 export dbg_end="\nexit with OK status!";
 
 ### DEBUG ORDER METHOD

@@ -41,6 +41,7 @@ export dbg_actual_others=" altri parametri = ";
 export dbg_others_empty="non \u00e8 stata indicata alcuna directory. Uso cartella corrente"
 export dbg_others_not_slash="parametro indicato non contiene slash finale. Aggiunto"
 export dbg_others_not_slash="parametro indicato non assoluto. Aggiunta pwd"
+export dbg_others_not_slash_after="parametro indicato non ha slash finale. Aggiunta"
 export dbg_end="\nUscita con stato OK!";
 
 ### DEBUG ORDER METHOD

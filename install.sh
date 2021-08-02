@@ -19,9 +19,9 @@ echo "sudo cp -rf \"$inst_dir\" /usr/share/mowish"
 
 sudo cp -rf "$inst_dir" /usr/share/mowish
 
-echo "sudo ln -sf /usr/bin/mowish/mowi.sh /usr/bin/mowish" 
+echo "sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish" 
 
-sudo ln -sf /usr/bin/mowish/mowi.sh /usr/bin/mowish
+sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
 
 echo "you can start script with:"
 echo "mowish -h"
