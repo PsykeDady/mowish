@@ -151,7 +151,7 @@ function order(){
 
 function main() {
 
-	if (($#<1 || $#>2)); then 
+	if (( $#>2)); then 
 		error "${err_wrong_parameter_numbers:?}"
 		return 1
 	fi 
