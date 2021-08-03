@@ -52,3 +52,19 @@ export dbg_order_type="tipo file"
 ### DEBUG CREATE MOVE METHOD
 export dbg_createMove_createdir="creo la cartella "
 
+
+## INFO-LOG / OTHERS SCRIPT
+
+### install
+export install_confirm_yes="^[Ss]$"
+export info_install_start="Inizia l'installazione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per installare il software. In caso di problemi aprire un ISSUE su github: "
+export info_install_err_int="la cartella specificata non esiste. Errore interno contattare lo sviluppatore"
+export info_install_err_cp="errore nella copia. Contatta lo sviluppatore inoltrando eventuali log"
+export info_install_err_ln="errore nel link dell'eseguibile. Contatta lo sviluppatore inoltrando eventuali log"
+export info_install_finish="Installazione Completata \u2713 Puoi avviare il comando con: "
+export info_install_dir_pwd="La cartella di installazione \u00e8 il tuo percorso corrente. L'eliminazione potrebbe non andare a buon fine"
+export info_install_ask_remove="Eliminare la cartella di installazione [s/N]? "
+export info_install_done_remove="Eliminata"
+export info_install_failed_remove="Non sono riuscito ad eliminare la cartella."
+export info_install_man_remove="Puoi cancellarla tu stesso con:"
+

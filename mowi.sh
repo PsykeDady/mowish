@@ -23,66 +23,61 @@ export MOWISH_VERSION=0.1
 debug=0
 
 ## CONSTANTS
-SCRIPT_DIR="$(readlink "$0")"
-if [ "$SCRIPT_DIR" == "" ]; then 
-	SCRIPT_DIR="$(dirname "$0")"
+MOWISH_DIR="$(readlink "$0")"
+if [ "$MOWISH_DIR" == "" ]; then 
+	MOWISH_DIR="$(dirname "$0")"
 else 
-	SCRIPT_DIR="$(dirname "$SCRIPT_DIR")"
+	MOWISH_DIR="$(dirname "$MOWISH_DIR")"
 fi
-CONSTANTS_FILE="$SCRIPT_DIR/constants.sh"
+
+CONSTANTS_FILE="$MOWISH_DIR/constants.sh"
+UTILS_FILE="$MOWISH_DIR/utils.sh"
 
 ## variables
 others=""
-op=""
-
-
-
 
 ## SOURCES
+# shellcheck disable=SC1091 disable=SC1090
 source "${CONSTANTS_FILE:?}"
+# shellcheck disable=SC1091 disable=SC1090
+source "${UTILS_FILE:?}"
+
 
 
 function menu_help(){
-	echo -e "${menu_help_msg:?}"
+	infomsg "${menu_help_msg:?}"
 }
 
 ## print a debug message
 function debugmsg() {
 	if((debug==1));then
-		echo -e "[DEBUG] $*"
+		infomsg "[DEBUG] $*"
 	fi
 }
 
-## print error 
-function error (){
-	menu_help
-	echo ""
-	echo -e "[ERR] : $*" > /dev/stderr
-}
-
 function errorCodes(){
-	echo -e "List of error codes:"
-	echo -e "\t  1 : number of parameter wrong"
-	echo -e "\t  2 : others parameter not allowed with this operation"
-	echo -e "\t  3 : "
-	echo -e "\t  4 : "
-	echo -e "\t 10 : wrong parameter found"
-	echo -e "\t 11 : found others parameter before operation or action"
-	echo -e "\t 12 : directory not valid"
-	echo -e "\t 13 : "
-	echo -e "\t 14 : "
-	echo -e "\t 20 : file not found"
-	echo -e "\t 21 : "
-	echo -e "\t 22 : "
-	echo -e "\t 23 : "
-	echo -e "\t 30 : invalid state"
-	echo -e "\t 31 : "
-	echo -e "\t 32 : "
-	echo -e "\t255 : generic errors"
+	infomsg "List of error codes:"
+	infomsg "\t  1 : number of parameter wrong"
+	infomsg "\t  2 : others parameter not allowed with this operation"
+	infomsg "\t  3 : "
+	infomsg "\t  4 : "
+	infomsg "\t 10 : wrong parameter found"
+	infomsg "\t 11 : found others parameter before operation or action"
+	infomsg "\t 12 : directory not valid"
+	infomsg "\t 13 : "
+	infomsg "\t 14 : "
+	infomsg "\t 20 : file not found"
+	infomsg "\t 21 : "
+	infomsg "\t 22 : "
+	infomsg "\t 23 : "
+	infomsg "\t 30 : invalid state"
+	infomsg "\t 31 : "
+	infomsg "\t 32 : "
+	infomsg "\t255 : generic errors"
 }
 
 function loadTranslation() {
-	tdir="$SCRIPT_DIR/${TRANSLATION_DIR:?}"
+	tdir="$MOWISH_DIR/${TRANSLATION_DIR:?}"
 	translation_source="$tdir/${EN:?}"
 
 	case $LANG in 
@@ -116,7 +111,7 @@ function createMove(){
 		mkdir "$percorsotipo"
 	fi
 
-	debugmsg "[createMove] mv "$what" "$percorsotipo""
+	debugmsg "[createMove] mv \"$what\" \"$percorsotipo\""
 	mv "$what" "$percorsotipo"
 
 
@@ -165,7 +160,7 @@ function main() {
 	
 		if [[ $1 == "-d" || $1 == "--debug" ]] || ((debug==1)); then 
 			# the only explicit debugmsg
-			echo -e "[DEBUG] ${dbg_parameter_msg:?} $1" 
+			infomsg "[DEBUG] ${dbg_parameter_msg:?} $1" 
 		fi
 		case $1 in
 			"-d"     |"--debug"         ) debug=1  ;;

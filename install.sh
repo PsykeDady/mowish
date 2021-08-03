@@ -3,25 +3,90 @@
 # This file is part of "MOWISH" by PsykeDady
 # released under GPLv3. Read LICENSE file or footer of mowi.sh file
 
-inst_dir="$0"
+function loadTranslation() {
+	tdir="$MOWISH_DIR/${TRANSLATION_DIR:?}"
+	translation_source="$tdir/${EN:?}"
 
-if [[ ! "$inst_dir" =~ /.* ]];then 
-    inst_dir="$PWD/$inst_dir"
+	case $LANG in 
+		"it"|"IT"|"it_IT"*) 
+			translation_source="$tdir/${IT:?}"
+		;;
+	esac 
+
+	# shellcheck disable=SC1091 disable=SC1090
+	source "$translation_source"
+}
+
+MOWISH_DIR="$(readlink "$0")"
+
+if [ "$MOWISH_DIR" == "" ]; then 
+	MOWISH_DIR="$(dirname "$0")"
+else 
+	MOWISH_DIR="$(dirname "$MOWISH_DIR")"
 fi
 
-echo "inst_dir/install.sh=$inst_dir"
+CONSTANTS_FILE="$MOWISH_DIR/constants.sh"
+UTILS_FILE="$MOWISH_DIR/utils.sh"
 
-inst_dir=$(dirname "$inst_dir")
+## SOURCES
+# shellcheck disable=SC1091 disable=SC1090
+source "${CONSTANTS_FILE:?}"
+# shellcheck disable=SC1091 disable=SC1090
+source "${UTILS_FILE:?}"
 
-echo "inst_dir=$inst_dir"
+loadTranslation
 
-echo "sudo cp -rf \"$inst_dir\" /usr/share/mowish"
+infomsg "${info_install_start:?}"
 
-sudo cp -rf "$inst_dir" /usr/share/mowish
+infomsg "MOWISH_DIR=${MOWISH_DIR:?}"
 
-echo "sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish" 
+if [[ ! -d ${MOWISH_DIR:?} ]]; then 
+    error "${info_install_err_int:?}"
+    exit 255
+fi
+
+infomsg "sudo cp -rf \"${MOWISH_DIR:?}\" /usr/share/mowish"
+
+sudo cp -rf "${MOWISH_DIR:?}" /usr/share/mowish
+status=$?
+if [[ ! -d /usr/share/mowish ]] || (( status != 0 )); then 
+   error "${info_install_err_cp:?}"
+   exit 255;
+fi
+
+infomsg "sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish" 
 
 sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
+status=$?
 
-echo "you can start script with:"
-echo "mowish -h"
+if [[ ! -e /usr/bin/mowish ]] || (( status != 0 )); then 
+   error "${info_install_err_ln:?}"
+   exit 255;
+fi
+
+infomsg "${info_install_finish:?}"
+infomsg "mowish -h"
+
+infomsg "${info_install_ask_remove:?}"
+read -r confirm
+
+if [[ "$confirm" =~ ${install_confirm_yes:?} ]];then 
+    if [[ "$(pwd -P)" == "${MOWISH_DIR:?}" ]]; then
+        infomsg "${info_install_dir_pwd:?}"
+        infomsg "cd .."
+        cd ..
+    fi
+    infomsg "rm -rf \"${MOWISH_DIR:?}\""
+    rm -rf "${MOWISH_DIR:?}"
+    status=$?
+    
+    if [[ -d "${MOWISH_DIR:?}" ]] || (( status != 0 )); then 
+        error "${info_install_failed_remove:?}"
+        error "${info_install_man_remove:?}"
+    else 
+        infomsg "${info_install_done_remove:?}"
+    fi
+else 
+    infomsg "${info_install_man_remove:?}"
+    infomsg "rm -rf \"${MOWISH_DIR:?}\""
+fi
