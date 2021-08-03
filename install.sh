@@ -25,6 +25,12 @@ else
 	MOWISH_DIR="$(dirname "$MOWISH_DIR")"
 fi
 
+if [[ "$MOWISH_DIR" == "." ]]; then 
+	MOWISH_DIR=$PWD
+elif [[ ! "$MOWISH_DIR" =~ /.* ]]; then 
+	MOWISH_DIR=$PWD/$MOWISH_DIR
+fi
+
 CONSTANTS_FILE="$MOWISH_DIR/constants.sh"
 UTILS_FILE="$MOWISH_DIR/utils.sh"
 
@@ -41,8 +47,8 @@ infomsg "${info_install_start:?}"
 infomsg "MOWISH_DIR=${MOWISH_DIR:?}"
 
 if [[ ! -d ${MOWISH_DIR:?} ]]; then 
-    error "${info_install_err_int:?}"
-    exit 255
+	error "${info_install_err_int:?}"
+	exit 255
 fi
 
 infomsg "sudo cp -rf \"${MOWISH_DIR:?}\" /usr/share/mowish"
@@ -71,22 +77,23 @@ infomsg "${info_install_ask_remove:?}"
 read -r confirm
 
 if [[ "$confirm" =~ ${install_confirm_yes:?} ]];then 
-    if [[ "$(pwd -P)" == "${MOWISH_DIR:?}" ]]; then
-        infomsg "${info_install_dir_pwd:?}"
-        infomsg "cd .."
-        cd ..
-    fi
-    infomsg "rm -rf \"${MOWISH_DIR:?}\""
-    rm -rf "${MOWISH_DIR:?}"
-    status=$?
-    
-    if [[ -d "${MOWISH_DIR:?}" ]] || (( status != 0 )); then 
-        error "${info_install_failed_remove:?}"
-        error "${info_install_man_remove:?}"
-    else 
-        infomsg "${info_install_done_remove:?}"
-    fi
+	if [[ "$PWD" == "${MOWISH_DIR:?}" ]] || [[ "." == "${MOWISH_DIR:?}" ]]; then
+		infomsg "${info_install_dir_pwd:?}"
+		infomsg "cd .."
+		cd ..
+	fi
+	infomsg "rm -rf \"${MOWISH_DIR:?}\""
+	rm -rf "${MOWISH_DIR:?}"
+	status=$?
+	
+	if [[ -d "${MOWISH_DIR:?}" ]] || (( status != 0 )); then 
+		error "${info_install_failed_remove:?}"
+		error "${info_install_man_remove:?}"
+		infomsg "rm -rf \"${MOWISH_DIR:?}\""
+	else 
+		infomsg "${info_install_done_remove:?}"
+	fi
 else 
-    infomsg "${info_install_man_remove:?}"
-    infomsg "rm -rf \"${MOWISH_DIR:?}\""
+	infomsg "${info_install_man_remove:?}"
+	infomsg "rm -rf \"${MOWISH_DIR:?}\""
 fi
