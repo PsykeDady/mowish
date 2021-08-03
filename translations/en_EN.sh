@@ -13,6 +13,10 @@ menu_help_msg=$menu_help_msg"\n""If no path is passed, working directory is used
 menu_help_msg=$menu_help_msg"\n""To follow the project, go to http://github.com/PsykeDady/movish"
 export menu_help_msg
 
+### CONFIRM DECLINE
+export confirm_yes="^[Yy]$"
+export decline_no="^[Nn]$"
+
 ### DIRECTORIES
 export PICTURE_DIR="Images"
 export MUSIC_DIR="Music"
@@ -51,3 +55,33 @@ export dbg_order_type="file type"
 ### DEBUG CREATE MOVE METHOD
 export dbg_createMove_createdir="create dir "
 
+
+## INFO-LOG / OTHERS SCRIPT
+
+### install
+export info_install_start="Start of installation of MOWISH, operations log will be printed on output with every istruction that script will do. In case of problems or bugs open an ISSUE on github: http://github.com/PsykeDady/movish\n"
+export info_install_found_mowish="mowish found as executable on path: %s. Overwrite? [y/N]"
+export info_install_not_overwrite="mowish will be not overwrited. Installation stopped"
+export info_install_err_int="specified directory not exists. Internal error, please send report to dev"
+export info_install_err_cp="Error occurred during copy. Please send report to dev"
+export info_install_err_ln="Error occurred during link executable. Please send report to dev"
+export info_install_finish="Installation done \u2713 \nYou can use script with: "
+export info_install_dir_pwd="The directory of this installation script is same of your current working directory. Deleting it can fail\n"
+export info_install_ask_remove="\nDeleting directory of installation script? [y/N] "
+export info_install_done_remove="Deleted"
+export info_install_failed_remove="I can't delete the directory"
+export info_install_remove_no="Directory not deleted by choise."
+export info_install_man_remove="You can delete when you want by write:"
+
+
+### uninstall
+export info_uninstall_start="Start of uninstallation of MOWISH, operations log will be printed on output with every istruction that script will do. In case of problems or bugs open an ISSUE on github: http://github.com/PsykeDady/movish\n"
+export info_uninstall_err_not_found="Mowish not found in this system. Exit..."
+export info_uninstall_found_at="Mowish founded on "
+export info_uninstall_link_resolved="resolved symbolic link as "
+export info_uninstall_installation_dir="Installation directory is"
+export info_uninstall_ask="Confirm deleting? [Y/n]"
+export info_uninstall_err_bin="error on executable deleting"
+export info_uninstall_err_dir="error on directory deleting"
+export info_uninstall_done="Uninstall done \u2713"
+export info_uninstall_stop="Uninstall stopped"
