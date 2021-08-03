@@ -44,6 +44,25 @@ loadTranslation
 
 infomsg "${info_install_start:?}"
 
+exists=$(which mowish)
+status=$?
+
+if ((status==0)); then 
+	# shellcheck disable=SC2059
+	infomsg "$(printf "${info_install_found_mowish:?}" "$exists")"
+	read confirm
+	if [[ ! "$confirm" =~ ${install_confirm_yes:?} ]]; then
+		infomsg "${info_install_not_overwrite:?}";
+		exit 0
+	fi
+	infomsg "sudo rm -rf /usr/share/mowish"
+	sudo rm -rf /usr/share/mowish
+	infomsg "sudo rm \"$exists\""
+	sudo rm "$exists" 
+fi
+
+
+
 infomsg "MOWISH_DIR=${MOWISH_DIR:?}"
 
 if [[ ! -d ${MOWISH_DIR:?} ]]; then 
@@ -94,6 +113,7 @@ if [[ "$confirm" =~ ${install_confirm_yes:?} ]];then
 		infomsg "${info_install_done_remove:?}"
 	fi
 else 
+	infomsg "${info_install_remove_no:?}"
 	infomsg "${info_install_man_remove:?}"
 	infomsg "rm -rf \"${MOWISH_DIR:?}\""
 fi

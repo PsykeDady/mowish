@@ -57,7 +57,9 @@ export dbg_createMove_createdir="creo la cartella "
 
 ### install
 export install_confirm_yes="^[Ss]$"
-export info_install_start="Inizia l'installazione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per installare il software. In caso di problemi aprire un ISSUE su github: "
+export info_install_start="Inizia l'installazione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per installare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish"
+export info_install_found_mowish="Trovato mowish come eseguibile nel path: %s sovrascriverlo? [s/N]"
+export info_install_not_overwrite="mowish non sovrascritto. Installazione interrotta"
 export info_install_err_int="la cartella specificata non esiste. Errore interno contattare lo sviluppatore"
 export info_install_err_cp="errore nella copia. Contatta lo sviluppatore inoltrando eventuali log"
 export info_install_err_ln="errore nel link dell'eseguibile. Contatta lo sviluppatore inoltrando eventuali log"
@@ -66,5 +68,6 @@ export info_install_dir_pwd="La cartella di installazione \u00e8 il tuo percorso
 export info_install_ask_remove="Eliminare la cartella di installazione [s/N]? "
 export info_install_done_remove="Eliminata"
 export info_install_failed_remove="Non sono riuscito ad eliminare la cartella."
+export info_install_remove_no="Cartella preservata."
 export info_install_man_remove="Puoi cancellarla tu stesso con:"
 
