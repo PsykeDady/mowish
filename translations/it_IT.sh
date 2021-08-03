@@ -13,6 +13,10 @@ menu_help_msg=$menu_help_msg"\n""Se non inserita una posizione viene automaticam
 menu_help_msg=$menu_help_msg"\n""Per seguire attivamente il progetto, vai su http://github.com/PsykeDady/movish"
 export menu_help_msg
 
+### CONFIRM DECLINE
+export confirm_yes="^[Ss]$"
+export decline_no="^[Nn]$"
+
 ### DIRECTORIES
 export PICTURE_DIR="Immagini"
 export MUSIC_DIR="Musica"
@@ -56,18 +60,29 @@ export dbg_createMove_createdir="creo la cartella "
 ## INFO-LOG / OTHERS SCRIPT
 
 ### install
-export install_confirm_yes="^[Ss]$"
-export info_install_start="Inizia l'installazione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per installare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish"
+export info_install_start="Inizia l'installazione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per installare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
 export info_install_found_mowish="Trovato mowish come eseguibile nel path: %s sovrascriverlo? [s/N]"
 export info_install_not_overwrite="mowish non sovrascritto. Installazione interrotta"
 export info_install_err_int="la cartella specificata non esiste. Errore interno contattare lo sviluppatore"
 export info_install_err_cp="errore nella copia. Contatta lo sviluppatore inoltrando eventuali log"
 export info_install_err_ln="errore nel link dell'eseguibile. Contatta lo sviluppatore inoltrando eventuali log"
 export info_install_finish="Installazione Completata \u2713 Puoi avviare il comando con: "
-export info_install_dir_pwd="La cartella di installazione \u00e8 il tuo percorso corrente. L'eliminazione potrebbe non andare a buon fine"
-export info_install_ask_remove="Eliminare la cartella di installazione [s/N]? "
+export info_install_dir_pwd="La cartella di installazione \u00e8 il tuo percorso corrente. L'eliminazione potrebbe non andare a buon fine\n"
+export info_install_ask_remove="\nEliminare la cartella di installazione [s/N]? "
 export info_install_done_remove="Eliminata"
 export info_install_failed_remove="Non sono riuscito ad eliminare la cartella."
 export info_install_remove_no="Cartella preservata."
 export info_install_man_remove="Puoi cancellarla tu stesso con:"
 
+
+### uninstall
+export info_uninstall_start="Inizia la rimozione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per eliminare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
+export info_uninstall_err_not_found="Mowish non trovato nel tuo sistema. Uscita..."
+export info_uninstall_found_at="Mowish trovato eseguibile in "
+export info_uninstall_link_resolved="risoluzione collegamento simbolico come "
+export info_uninstall_installation_dir="la cartella di installazione risulta essere"
+export info_uninstall_ask="confermare disinstallazione? [S/n]"
+export info_uninstall_err_bin="errore nella cancellazione eseguibile bin"
+export info_uninstall_err_dir="errore nella cancellazione directory installazione"
+export info_uninstall_done="Disinstallazione terminata \u2713"
+export info_uninstall_stop="Disinstallazione interrotta"

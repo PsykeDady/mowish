@@ -50,8 +50,8 @@ status=$?
 if ((status==0)); then 
 	# shellcheck disable=SC2059
 	infomsg "$(printf "${info_install_found_mowish:?}" "$exists")"
-	read confirm
-	if [[ ! "$confirm" =~ ${install_confirm_yes:?} ]]; then
+	read -r confirm
+	if [[ ! "$confirm" =~ ${confirm_yes:?} ]]; then
 		infomsg "${info_install_not_overwrite:?}";
 		exit 0
 	fi
@@ -95,7 +95,7 @@ infomsg "mowish -h"
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
 
-if [[ "$confirm" =~ ${install_confirm_yes:?} ]];then 
+if [[ "$confirm" =~ ${confirm_yes:?} ]];then 
 	if [[ "$PWD" == "${MOWISH_DIR:?}" ]] || [[ "." == "${MOWISH_DIR:?}" ]]; then
 		infomsg "${info_install_dir_pwd:?}"
 		infomsg "cd .."
@@ -117,3 +117,5 @@ else
 	infomsg "${info_install_man_remove:?}"
 	infomsg "rm -rf \"${MOWISH_DIR:?}\""
 fi
+
+exit 0
