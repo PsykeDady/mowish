@@ -9,14 +9,14 @@
 # 										#
 # Author  = PsykeDady					#
 # License = GPL3.0						#
-# Version = 0.1							#
+# Version = 0.2							#
 # 										#
 # read license at the end of this file	#
 #########################################
 
 # GLOBAL VARIABLES
 ## MOWISH VERSION 
-export MOWISH_VERSION=0.1
+export MOWISH_VERSION=0.2
 
 ## DEBUG ZONE
 ### debug flag

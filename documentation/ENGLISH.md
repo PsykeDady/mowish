@@ -1,6 +1,5 @@
 # MowiSH
-`Version: 0.1`
-**M**ake **O**rder **WI**th ba**SH** 
+**M**ake **O**rder **WI**th ba**SH**   
 With mowish, you can categorize your files by type in a folder. I.E. if you have a folder with images, audio and text file, executing mowish your directory will be reorganized into sub-folders each of which will contain only files of the same type.
 
 Actually, mowish support: 
@@ -13,6 +12,7 @@ Actually, mowish support:
 - script
 - archives
 - executables
+- disk images (ISO)
 
 The script is easily extendable
 ## installation
@@ -49,10 +49,11 @@ or specify a different working dir with:
 mowish path/to/dir
 ```
 
-with `-d` flag script will be verbose ( for debugging )
+with `-d` or `--debug` flag script will be verbose ( for debugging )
 ```bash
 movish -d path/to/dir
 ```
 
-with `-h` you can see the help
-with `-e` you can see the error codes.
+with `-r` or `--recursive` script will be recursive, every sub-folder will be reorganized.
+with `-h` or `--help` you can see the help and then exit (no operation).
+with `-e` or `--errors` you can see the error codes and then exit (no operation).
