@@ -1,4 +1,4 @@
-# MowiSH
+# MowiSH (Italian)
 **M**ake **O**rder **WI**th ba**SH** (Fai ordine con bash)  
 Con mowish puoi categorizzare i tuoi file in base al tipo.   
 Ad esempio avendo una cartella con immagini, audio e file di testo semplice, eseguendo mowish la tua coartella verrà riorganizzata e categorizzata in sotto cartelle ognuna delle quali conterrà solo file dello stesso tipo.
