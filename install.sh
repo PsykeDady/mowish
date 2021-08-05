@@ -17,6 +17,47 @@ function loadTranslation() {
 	source "$translation_source"
 }
 
+function dolphinService(){
+	which dolphin > /dev/null
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_dolphin:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${kservices_local_path:?}" ]]; then 
+		mkdir "${kservices_local_path:?}"
+		stato=$?
+		if ((stato!=0)); then 
+			return 255;
+		fi
+	fi
+
+	if [[ -e "${kservices_mowish_local_path:?}" ]]; then 
+		infomsg "${info_install_dolphin_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	dolphinService="$(cat "$MOWISH_DIR/${kservices_resource_path:?}")"
+
+	# shellcheck disable=2059
+	dolphinService=$(printf "$dolphinService\n" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_menu_name:?}")
+
+	infomsg "${info_install_dolphin_print:?}"
+
+	echo "$dolphinService" | tee "${kservices_mowish_local_path:?}"
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 
@@ -26,9 +67,9 @@ else
 fi
 
 if [[ "$MOWISH_DIR" == "." ]]; then 
-	MOWISH_DIR=$PWD
+	MOWISH_DIR="$PWD"
 elif [[ ! "$MOWISH_DIR" =~ /.* ]]; then 
-	MOWISH_DIR=$PWD/$MOWISH_DIR
+	MOWISH_DIR="$PWD"/"$MOWISH_DIR"
 fi
 
 CONSTANTS_FILE="$MOWISH_DIR/constants.sh"
@@ -92,6 +133,8 @@ fi
 infomsg "${info_install_finish:?}"
 infomsg "mowish -h"
 
+dolphinService
+
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
 
@@ -117,5 +160,6 @@ else
 	infomsg "${info_install_man_remove:?}"
 	infomsg "rm -rf \"${MOWISH_DIR:?}\""
 fi
+
 
 exit 0

@@ -65,13 +65,18 @@ export info_install_not_overwrite="mowish will be not overwrited. Installation s
 export info_install_err_int="specified directory not exists. Internal error, please send report to dev"
 export info_install_err_cp="Error occurred during copy. Please send report to dev"
 export info_install_err_ln="Error occurred during link executable. Please send report to dev"
-export info_install_finish="Installation done \u2713 \nYou can use script with: "
+export info_install_finish="\nInstallation done \u2713 \nYou can use script with: "
 export info_install_dir_pwd="The directory of this installation script is same of your current working directory. Deleting it can fail\n"
 export info_install_ask_remove="\nDeleting directory of installation script? [y/N] "
 export info_install_done_remove="Deleted"
 export info_install_failed_remove="I can't delete the directory"
 export info_install_remove_no="Directory not deleted by choise."
-export info_install_man_remove="You can delete when you want by write:"
+export info_install_man_remove="\nYou can delete when you want by write:"
+export info_install_ask_dolphin="\nDolphin file manager detected. Install menu service for this file manager? [Y/n]"
+export info_install_dolphin_exists="dolphin services already exists, overwrite? [Y/n]"
+export info_install_dolphin_action_name="organizeDir"
+export info_install_dolphin_menu_name="Organize Directory"
+export info_install_dolphin_print="writing this desktop file as kservices\n"
 
 
 ### uninstall

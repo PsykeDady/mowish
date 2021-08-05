@@ -66,14 +66,18 @@ export info_install_not_overwrite="mowish non sovrascritto. Installazione interr
 export info_install_err_int="la cartella specificata non esiste. Errore interno contattare lo sviluppatore"
 export info_install_err_cp="errore nella copia. Contatta lo sviluppatore inoltrando eventuali log"
 export info_install_err_ln="errore nel link dell'eseguibile. Contatta lo sviluppatore inoltrando eventuali log"
-export info_install_finish="Installazione Completata \u2713 \nPuoi avviare il comando con: "
+export info_install_finish="\nInstallazione Completata \u2713 \nPuoi avviare il comando con: "
 export info_install_dir_pwd="La cartella di installazione \u00e8 il tuo percorso corrente. L'eliminazione potrebbe non andare a buon fine\n"
 export info_install_ask_remove="\nEliminare la cartella di installazione [s/N]? "
 export info_install_done_remove="Eliminata"
 export info_install_failed_remove="Non sono riuscito ad eliminare la cartella."
 export info_install_remove_no="Cartella preservata."
-export info_install_man_remove="Puoi cancellarla tu stesso con:"
-
+export info_install_man_remove="\nPuoi cancellarla tu stesso con:"
+export info_install_ask_dolphin="\nGestore file dolphin indiduato, installare servizio nel menu? [S/n]"
+export info_install_dolphin_exists="Servizio dolphin esistente, sovrascrivere? [S/n]"
+export info_install_dolphin_action_name="organizzaCartella"
+export info_install_dolphin_menu_name="Organizza Cartella"
+export info_install_dolphin_print="scrittura del file in kservices\n"
 
 ### uninstall
 export info_uninstall_start="Inizia la rimozione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per eliminare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
