@@ -18,7 +18,7 @@ export confirm_yes="^[Yy]$"
 export decline_no="^[Nn]$"
 
 ### DIRECTORIES
-export PICTURE_DIR="Images"
+export PICTURE_DIR="Pictures"
 export MUSIC_DIR="Music"
 export VIDEO_DIR="Video"
 export DOCUMENT_DIR="Documents"
@@ -26,6 +26,8 @@ export SCRIPT_DIR="Scripts"
 export TEXT_DIR="Text Files"
 export BIN_DIR="Binary"
 export ARCHIVE_DIR="Archives"
+export DISK_IMAGE_DIR="Disk Images"
+export PACKAGES_DIR="Packages"
 export UNKNOWN_DIR="Others"
 
 
