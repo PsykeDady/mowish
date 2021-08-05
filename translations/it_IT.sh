@@ -26,6 +26,8 @@ export SCRIPT_DIR="Codici"
 export TEXT_DIR="Testo"
 export BIN_DIR="Eseguibili"
 export ARCHIVE_DIR="Archivi"
+export DISK_IMAGE_DIR="Immagini Disco"
+export PACKAGES_DIR="Pacchetti"
 export UNKNOWN_DIR="Altri"
 
 

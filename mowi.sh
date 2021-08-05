@@ -155,7 +155,9 @@ function order(){
 			*"PDF"*|*"document"*) where="${DOCUMENT_DIR:?}" ;;
 			*"Media"*|*"MP4"*) where="${VIDEO_DIR:?}" ;;
 			*"text"*) where="${TEXT_DIR:?}" ;;
+			*"Debian binary"* | *"RPM v"*" bin"* ) where="${PACKAGES_DIR:?}" ;; 
 			*"script"*) where="${SCRIPT_DIR:?}" ;; 
+			*"ISO 9660 CD-ROM"*) where="${DISK_IMAGE_DIR:?}" ;; 
 			*"archive"*|*"compressed"*) where="${ARCHIVE_DIR:?}" ;; 
 			*"BINARY"*|*"executable"*) where="${BIN_DIR:?}" ;; 
 		esac

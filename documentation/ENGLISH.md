@@ -13,6 +13,7 @@ Actually, mowish support:
 - archives
 - executables
 - disk images (ISO)
+- DEB and RPM installation packages
 
 The script is easily extendable
 ## installation

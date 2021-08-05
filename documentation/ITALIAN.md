@@ -14,6 +14,7 @@ Attualmente, mowish supporta:
 - archivi
 - eseguibili
 - immagini disco (ISO)
+- Pacchetti installazione DEB e RPM
 
 Lo script è facilmente estendibile
 ## Installazione
