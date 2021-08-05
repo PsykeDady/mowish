@@ -34,7 +34,7 @@ export err_action_first="l'operazione va specificata prima di altri eventuali pa
 export err_toomuch_parameters="altri parametri non ammessi con questa operazione"
 export err_wrong_parameter_numbers="numero parametri errato"
 export err_internal_error="Errore interno a funzione"
-export err_others_not_directory="parametro indicato non /u00e8 una directory"
+export err_others_not_directory="parametro indicato non \u00e8 una directory"
 
 ## DEBUG
 export dbg_start_method="inizio metodo"
@@ -51,6 +51,8 @@ export dbg_end="\nUscita con stato OK!";
 ### DEBUG ORDER METHOD
 export dbg_order_actual_file="file in analisi"
 export dbg_order_is_directory="\u00e8 una cartella, salta."
+export dbg_order_is_directory_recursive="\u00e8 una cartella, entrata ( flag di ricorsione abilitato) "
+export dbg_order_recursive_level="livello di ricorsione="
 export dbg_order_type="tipo file"
 
 ### DEBUG CREATE MOVE METHOD

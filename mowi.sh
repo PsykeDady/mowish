@@ -35,6 +35,8 @@ UTILS_FILE="$MOWISH_DIR/utils.sh"
 
 ## variables
 others=""
+recursive=0
+level=1
 
 ## SOURCES
 # shellcheck disable=SC1091 disable=SC1090
@@ -120,13 +122,27 @@ function createMove(){
 function order(){
 	debugmsg "[ORDER] ${dbg_start_method:?}"
 	debugmsg "[ORDER] others=$others"
-
-	OIFS=$IFS; IFS=$'\n'; 
+	if (( recursive == 1 )); then 
+		debugmsg "[ORDER] ${dbg_order_recursive_level:?} $level"
+		level=$((level+1))
+	fi
+	local tipo=""
+	local where=""
+	local oldothers=""
+	local OIFS=$IFS; IFS=$'\n'; 
 	for i in "$others"*; do 
 		debugmsg "[ORDER] ${dbg_order_actual_file:?} $i"
 		if [[ -d "$i" ]]; then
-			debugmsg "[ORDER] $i ${dbg_order_is_directory:?}"
-			continue;
+			if (( recursive == 1 )); then 
+				oldothers=$others
+				debugmsg "[ORDER] $i ${dbg_order_is_directory_recursive:?}"
+				others=$i/
+				order
+				others=$oldothers
+			else
+				debugmsg "[ORDER] $i ${dbg_order_is_directory:?}"
+				continue;
+			fi 
 		fi
 
 		tipo=$(file "$i");
@@ -163,7 +179,8 @@ function main() {
 			infomsg "[DEBUG] ${dbg_parameter_msg:?} $1" 
 		fi
 		case $1 in
-			"-d"     |"--debug"         ) debug=1  ;;
+			"-d"     |"--debug" ) debug=1  ;;
+			"-r"     |"--recursive" ) recursive=1  ;;
 			"help"   | "-h"    | "--help" ) 
 				menu_help
 				return 0
@@ -186,7 +203,7 @@ function main() {
 
 	if [[ "$others" == "" ]]; then  
 		debugmsg "${dbg_others_empty:?} $PWD"
-		others="."
+		others="$PWD"
 	elif [[ ! "$others" =~ ^/.*$ ]]; then
 		debugmsg "${dbg_others_not_slash:?}"
 		others="$PWD/$others"

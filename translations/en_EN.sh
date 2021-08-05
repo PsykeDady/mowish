@@ -50,6 +50,8 @@ export dbg_end="\nexit with OK status!";
 ### DEBUG ORDER METHOD
 export dbg_order_actual_file="look for file"
 export dbg_order_is_directory="is directory. skip"
+export dbg_order_is_directory_recursive="is directory. step into (recursive flag active)"
+export dbg_order_recursive_level="recursive level="
 export dbg_order_type="file type"
 
 ### DEBUG CREATE MOVE METHOD
