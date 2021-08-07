@@ -17,6 +17,26 @@ function loadTranslation() {
 	source "$translation_source"
 }
 
+function detectDolphinService(){
+	if [[ -e "${kservices_mowish_local_path:?}" ]]; then
+		infomsg "${info_uninstall_detected_dolphin_service:?} ${kservices_mowish_local_path:?}"
+
+		return 1;
+	fi
+
+	return 0;
+}
+
+function detectNautilusScript(){
+	if [[ -e  "${nautilus_scripts_path:?}/${organize_directory:?}" ]]; then 
+		infomsg "${info_uninstall_detected_nautilus_script:?} ${nautilus_scripts_path:?}/${organize_directory:?}"
+
+		return 1
+	fi
+
+	return 0;
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 
@@ -44,7 +64,7 @@ loadTranslation
 
 infomsg "${info_uninstall_start:?}"
 
-executable=$(which mowish)
+executable=$(which mowish 2> /dev/null)
 status=$?
 
 if ((status!=0)); then 
@@ -62,6 +82,12 @@ infomsg "${info_uninstall_link_resolved:?} $original"
 installation_dir=$(dirname "$original")
 
 infomsg "${info_uninstall_installation_dir:?} $installation_dir"
+
+detectDolphinService
+udolphin=$?
+
+detectNautilusScript
+unautilus=$?
 
 infomsg "${info_uninstall_ask:?}"
 
@@ -88,6 +114,26 @@ status=$?
 if (( status != 0 )) &&  [[ -d $installation_dir ]]; then 
     error "${info_uninstall_err_bin:?}"
     exit 255
+fi
+
+if (( udolphin==1 )); then 
+	echo "rm \"${kservices_mowish_local_path:?}\""
+	rm "${kservices_mowish_local_path:?}"
+	status=$?
+	if (( status!=0 )); then 
+		error "${info_uninstall_err_dolphin:?}"
+    	exit 255
+	fi
+fi
+
+if (( unautilus==1 )); then 
+	echo "rm \"${nautilus_scripts_path:?}/${organize_directory:?}\""
+	rm "${nautilus_scripts_path:?}/${organize_directory:?}"
+	status=$?
+	if (( status!=0 )); then 
+		error "${info_uninstall_err_nautilus:?}"
+    	exit 255
+	fi
 fi
 
 infomsg "${info_uninstall_done:?}"

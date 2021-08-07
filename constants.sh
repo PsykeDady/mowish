@@ -4,7 +4,7 @@
 # released under GPLv3. Read LICENSE file or footer of mowi.sh file
 
 ## PLACES
-export kservices_local_path="$HOME/.local/share/kservices5/"
+export kservices_local_path="$HOME/.local/share/kservices5"
 export kservices_mowish_local_path="$kservices_local_path/mowish.desktop"
 export kservices_resource_path="resources/mowish_dolphine.desktop"
 export nautilus_scripts_path="$HOME/.local/share/nautilus/scripts"

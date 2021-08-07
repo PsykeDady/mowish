@@ -5,6 +5,7 @@
 
 ## VARIABLES
 
+### MENU
 menu_help_msg="MOWISH (Make Order WIth baSH) \u00e8 un client che permette di mettere ordine nelle tue cartelle con bash!"
 menu_help_msg=$menu_help_msg"\n""Uso:"
 menu_help_msg=$menu_help_msg"\n""\nOrdina una cartella:"
@@ -28,6 +29,8 @@ export BIN_DIR="Eseguibili"
 export ARCHIVE_DIR="Archivi"
 export UNKNOWN_DIR="Altri"
 
+### SCRIPT
+export organize_directory="Organizza Cartella"
 
 ## ERRORS
 export err_action_first="l'operazione va specificata prima di altri eventuali parametri"
@@ -44,7 +47,6 @@ export dbg_actual_op=" operazione attuale = ";
 export dbg_actual_others=" altri parametri = ";
 export dbg_others_empty="non \u00e8 stata indicata alcuna directory. Uso cartella corrente"
 export dbg_others_not_slash="parametro indicato non contiene slash finale. Aggiunto"
-export dbg_others_not_slash="parametro indicato non assoluto. Aggiunta pwd"
 export dbg_others_not_slash_after="parametro indicato non ha slash finale. Aggiunta"
 export dbg_end="\nUscita con stato OK!";
 
@@ -76,14 +78,11 @@ export info_install_man_remove="\nPuoi cancellarla tu stesso con:"
 export info_install_ask_dolphin="\nGestore file dolphin indiduato, installare servizio nel menu? [S/n]"
 export info_install_dolphin_exists="Servizio dolphin esistente, sovrascrivere? [S/n]"
 export info_install_dolphin_action_name="organizzaCartella"
-export info_install_dolphin_menu_name="Organizza Cartella"
 export info_install_dolphin_print="scrittura del file in kservices\n"
 export info_install_ask_nautilus="\nFile Manager Nautilus individuato. Installare una voce di sotto menu? (la troverai sotto la voce script, premendo il tasto destro su un file) [S/n]"
 export info_install_nautilus_exists="lo script nautilus esiste già, vuoi sovrascriverlo? [S/n]"
-export info_install_nautilus_menu="Ordina directory"
 export info_install_nautilus_ask_quit="\nPer funzionare, nautilus ha bisogno di riavviarsi. Posso chiuderlo per te? [s/N]"
 export info_install_nautilus_quit_cmd="\nPuoi chiuderlo tu stesso digitando:"
-
 
 
 ### uninstall
@@ -92,8 +91,12 @@ export info_uninstall_err_not_found="Mowish non trovato nel tuo sistema. Uscita.
 export info_uninstall_found_at="Mowish trovato eseguibile in "
 export info_uninstall_link_resolved="risoluzione collegamento simbolico come "
 export info_uninstall_installation_dir="la cartella di installazione risulta essere"
-export info_uninstall_ask="confermare disinstallazione? [S/n]"
+export info_uninstall_ask="\nconfermare disinstallazione? [S/n]"
+export info_uninstall_detected_dolphin_service="Individuato servizio mowish per gestore file dolphin:"
+export info_uninstall_detected_nautilus_script="Individuato script mowish per gestore file nautilus:"
 export info_uninstall_err_bin="errore nella cancellazione eseguibile bin"
 export info_uninstall_err_dir="errore nella cancellazione directory installazione"
+export info_uninstall_err_dolphin="errore nella cancellazione servizio dolphin"
+export info_uninstall_err_nautilus="errore nella cancellazione script nautilus"
 export info_uninstall_done="Disinstallazione terminata \u2713"
 export info_uninstall_stop="Disinstallazione interrotta"

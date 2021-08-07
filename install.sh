@@ -18,7 +18,7 @@ function loadTranslation() {
 }
 
 function dolphinService(){
-	which dolphin > /dev/null
+	which dolphin > /dev/null 2> /dev/null
 	status=$?
 
 	if (( status!=0 )); then 
@@ -51,7 +51,7 @@ function dolphinService(){
 	dolphinService="$(cat "$MOWISH_DIR/${kservices_resource_path:?}")"
 
 	# shellcheck disable=2059
-	dolphinService=$(printf "$dolphinService\n" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_menu_name:?}")
+	dolphinService=$(printf "$dolphinService\n" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_action_name:?}" "${organize_directory:?}")
 
 	infomsg "${info_install_dolphin_print:?}"
 
@@ -59,7 +59,7 @@ function dolphinService(){
 }
 
 function nautilusScript(){
-	which nautilus > /dev/null
+	which nautilus > /dev/null 2> /dev/null
 	status=$?
 
 	if (( status!=0 )); then 
@@ -81,7 +81,7 @@ function nautilusScript(){
 		fi
 	fi
 
-	nautilus_mowish_scripts_path="${nautilus_scripts_path:?}/${info_install_nautilus_menu:?}"
+	nautilus_mowish_scripts_path="${nautilus_scripts_path:?}/${organize_directory:?}"
 
 	if [[ -e "${nautilus_mowish_scripts_path:?}" ]]; then 
 		infomsg "${info_install_nautilus_exists:?}"
@@ -137,10 +137,10 @@ loadTranslation
 
 infomsg "${info_install_start:?}"
 
-exists=$(which mowish)
+exists=$(which mowish 2> /dev/null)
 status=$?
 
-if ((status==0)); then 
+if (( status==0 )); then 
 	# shellcheck disable=SC2059
 	infomsg "$(printf "${info_install_found_mowish:?}" "$exists")"
 	read -r confirm
