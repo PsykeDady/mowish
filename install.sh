@@ -58,6 +58,57 @@ function dolphinService(){
 	echo "$dolphinService" | tee "${kservices_mowish_local_path:?}"
 }
 
+function nautilusScript(){
+	which nautilus > /dev/null
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_nautilus:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
+		mkdir "${nautilus_scripts_path:?}"
+		stato=$?
+		if ((stato!=0)); then 
+			return 255;
+		fi
+	fi
+
+	nautilus_mowish_scripts_path="${nautilus_scripts_path:?}/${info_install_nautilus_menu:?}"
+
+	if [[ -e "${nautilus_mowish_scripts_path:?}" ]]; then 
+		infomsg "${info_install_nautilus_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	infomsg "cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
+	cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
+
+	infomsg "${info_install_nautilus_ask_quit:=?}"
+
+	read -r confirm
+
+	if [[ $confirm =~ ${confirm_yes:?} ]]; then 
+		nautilus -q
+	else 
+		infomsg "${info_install_nautilus_quit_cmd:?}"
+	fi
+
+	infomsg "nautilus -q"
+
+
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 

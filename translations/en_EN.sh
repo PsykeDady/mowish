@@ -77,6 +77,11 @@ export info_install_dolphin_exists="dolphin services already exists, overwrite? 
 export info_install_dolphin_action_name="organizeDir"
 export info_install_dolphin_menu_name="Organize Directory"
 export info_install_dolphin_print="writing this desktop file as kservices\n"
+export info_install_ask_nautilus="\nNautilus file manager detected. Install script menu for this file manager? [Y/n]"
+export info_install_nautilus_exists="nautilus script already exists, want to replace it ? [Y/n]"
+export info_install_nautilus_menu="Order directory"
+export info_install_nautilus_ask_quit="\nIn order to work, you may need to restart nautilus, can i terminate it for you? [y/N]"
+export info_install_nautilus_quit_cmd="\nYou can close by yourself writing:"
 
 
 ### uninstall

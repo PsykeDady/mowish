@@ -78,6 +78,13 @@ export info_install_dolphin_exists="Servizio dolphin esistente, sovrascrivere? [
 export info_install_dolphin_action_name="organizzaCartella"
 export info_install_dolphin_menu_name="Organizza Cartella"
 export info_install_dolphin_print="scrittura del file in kservices\n"
+export info_install_ask_nautilus="\nFile Manager Nautilus individuato. Installare una voce di sotto menu? (la troverai sotto la voce script, premendo il tasto destro su un file) [S/n]"
+export info_install_nautilus_exists="lo script nautilus esiste già, vuoi sovrascriverlo? [S/n]"
+export info_install_nautilus_menu="Ordina directory"
+export info_install_nautilus_ask_quit="\nPer funzionare, nautilus ha bisogno di riavviarsi. Posso chiuderlo per te? [s/N]"
+export info_install_nautilus_quit_cmd="\nPuoi chiuderlo tu stesso digitando:"
+
+
 
 ### uninstall
 export info_uninstall_start="Inizia la rimozione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per eliminare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
