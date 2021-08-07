@@ -8,7 +8,7 @@ export kservices_local_path="$HOME/.local/share/kservices5/"
 export kservices_mowish_local_path="$kservices_local_path/mowish.desktop"
 export kservices_resource_path="resources/mowish_dolphine.desktop"
 export nautilus_scripts_path="$HOME/.local/share/nautilus/scripts"
-export nautilus_mowish_resource="resource/mowish_nautilus.sh"
+export nautilus_mowish_resource="resources/mowish_nautilus.sh"
 
 ### TRANSLATIONS 
 export TRANSLATION_DIR="translations"
