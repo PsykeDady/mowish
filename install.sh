@@ -34,8 +34,8 @@ function dolphinService(){
 
 	if [[ ! -d "${kservices_local_path:?}" ]]; then 
 		mkdir "${kservices_local_path:?}"
-		stato=$?
-		if ((stato!=0)); then 
+		status=$?
+		if ((status!=0)); then 
 			return 255;
 		fi
 	fi
@@ -75,8 +75,8 @@ function nautilusScript(){
 
 	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
 		mkdir "${nautilus_scripts_path:?}"
-		stato=$?
-		if ((stato!=0)); then 
+		status=$?
+		if ((status!=0)); then 
 			return 255;
 		fi
 	fi
@@ -185,6 +185,7 @@ infomsg "${info_install_finish:?}"
 infomsg "mowish -h"
 
 dolphinService
+nautilusScript
 
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
