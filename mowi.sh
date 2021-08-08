@@ -153,10 +153,10 @@ function order(){
 			*"Audio"*) where="${MUSIC_DIR:?}" ;; 
 			*"image"*|*"PNG"*) where="${PICTURE_DIR:?}";;
 			*"PDF"*|*"document"*) where="${DOCUMENT_DIR:?}" ;;
-			*"Media"*|*"MP4"*) where="${VIDEO_DIR:?}" ;;
+			*"Media"*|*"MP4"*|*"Matroska data"*) where="${VIDEO_DIR:?}" ;;
+			*"script"*|*"java"*) where="${SCRIPT_DIR:?}" ;; 
 			*"text"*) where="${TEXT_DIR:?}" ;;
 			*"Debian binary"* | *"RPM v"*" bin"* ) where="${PACKAGES_DIR:?}" ;; 
-			*"script"*) where="${SCRIPT_DIR:?}" ;; 
 			*"ISO 9660 CD-ROM"*) where="${DISK_IMAGE_DIR:?}" ;; 
 			*"archive"*|*"compressed"*) where="${ARCHIVE_DIR:?}" ;; 
 			*"BINARY"*|*"executable"*) where="${BIN_DIR:?}" ;; 
