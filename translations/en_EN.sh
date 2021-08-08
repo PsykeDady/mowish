@@ -83,7 +83,9 @@ export info_install_ask_nautilus="\nNautilus file manager detected. Install scri
 export info_install_nautilus_exists="nautilus script already exists, want to replace it ? [Y/n]"
 export info_install_nautilus_ask_quit="\nIn order to work, you may need to restart nautilus, can i terminate it for you? [y/N]"
 export info_install_nautilus_quit_cmd="\nYou can close by yourself writing:"
-
+export info_install_ask_nemo="\Nemo file manager detected. Install menu action for this file manager? [Y/n]"
+export info_install_nemo_exists="nemo action already exists, overwrite? [Y/n]"
+export info_install_nemo_print="writing this file as nemo action:\n"
 
 ### uninstall
 export info_uninstall_start="Start of uninstallation of MOWISH, operations log will be printed on output with every istruction that script will do. In case of problems or bugs open an ISSUE on github: http://github.com/PsykeDady/movish\n"

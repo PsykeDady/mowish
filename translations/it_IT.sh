@@ -83,6 +83,9 @@ export info_install_ask_nautilus="\nFile Manager Nautilus individuato. Installar
 export info_install_nautilus_exists="lo script nautilus esiste già, vuoi sovrascriverlo? [S/n]"
 export info_install_nautilus_ask_quit="\nPer funzionare, nautilus ha bisogno di riavviarsi. Posso chiuderlo per te? [s/N]"
 export info_install_nautilus_quit_cmd="\nPuoi chiuderlo tu stesso digitando:"
+export info_install_ask_nemo="\nGestore file nemo indiduato, installare azione nel menu? [S/n]"
+export info_install_nemo_exists="Azion nemo esistente, sovrascrivere? [S/n]"
+export info_install_nemo_print="scrittura del file nelle azioni nemo:\n"
 
 
 ### uninstall

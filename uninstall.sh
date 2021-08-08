@@ -117,7 +117,7 @@ if (( status != 0 )) &&  [[ -d $installation_dir ]]; then
 fi
 
 if (( udolphin==1 )); then 
-	echo "rm \"${kservices_mowish_local_path:?}\""
+	infomsg "rm \"${kservices_mowish_local_path:?}\""
 	rm "${kservices_mowish_local_path:?}"
 	status=$?
 	if (( status!=0 )); then 
@@ -127,7 +127,7 @@ if (( udolphin==1 )); then
 fi
 
 if (( unautilus==1 )); then 
-	echo "rm \"${nautilus_scripts_path:?}/${organize_directory:?}\""
+	infomsg "rm \"${nautilus_scripts_path:?}/${organize_directory:?}\""
 	rm "${nautilus_scripts_path:?}/${organize_directory:?}"
 	status=$?
 	if (( status!=0 )); then 

@@ -106,8 +106,48 @@ function nautilusScript(){
 	fi
 
 	infomsg "nautilus -q"
+}
 
+function nemoAction(){
+	which nemo > /dev/null 2> /dev/null
+	status=$?
 
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_nemo:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${nemo_action_local_path:?}" ]]; then 
+		mkdir "${nemo_action_local_path:?}"
+		infomsg "mkdir \"${nemo_action_local_path:?}\""
+		status=$?
+		if ((status!=0)); then 
+			return 255;
+		fi
+	fi
+
+	if [[ -e "${nemo_action_mowish_local_path:?}" ]]; then 
+		infomsg "${info_install_nemo_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	nemoAction="$(cat "$MOWISH_DIR/${nemo_action_resource_path:?}")"
+
+	# shellcheck disable=2059
+	nemoAction=$(printf "$nemoAction\n" "${organize_directory:?}" "${organize_directory:?}")
+
+	infomsg "${info_install_nemo_print:?}"
+
+	echo "$nemoAction" | tee "${nemo_action_mowish_local_path:?}"
 }
 
 MOWISH_DIR="$(readlink "$0")"
