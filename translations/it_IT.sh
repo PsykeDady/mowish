@@ -87,7 +87,6 @@ export info_install_ask_nemo="\nGestore file nemo individuato, installare azione
 export info_install_nemo_exists="Azion nemo esistente, sovrascrivere? [S/n]"
 export info_install_nemo_print="scrittura del file nelle azioni nemo:\n"
 
-
 ### uninstall
 export info_uninstall_start="Inizia la rimozione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per eliminare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
 export info_uninstall_err_not_found="Mowish non trovato nel tuo sistema. Uscita..."
@@ -97,9 +96,11 @@ export info_uninstall_installation_dir="la cartella di installazione risulta ess
 export info_uninstall_ask="\nconfermare disinstallazione? [S/n]"
 export info_uninstall_detected_dolphin_service="Individuato servizio mowish per gestore file dolphin:"
 export info_uninstall_detected_nautilus_script="Individuato script mowish per gestore file nautilus:"
+export info_uninstall_detected_nemo_action="Individuata azione mowish per gestore file nemo:"
 export info_uninstall_err_bin="errore nella cancellazione eseguibile bin"
 export info_uninstall_err_dir="errore nella cancellazione directory installazione"
 export info_uninstall_err_dolphin="errore nella cancellazione servizio dolphin"
 export info_uninstall_err_nautilus="errore nella cancellazione script nautilus"
+export info_uninstall_err_nemo="errore nella cancellazione azione nemo"
 export info_uninstall_done="Disinstallazione terminata \u2713"
 export info_uninstall_stop="Disinstallazione interrotta"

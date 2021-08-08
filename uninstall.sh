@@ -37,6 +37,16 @@ function detectNautilusScript(){
 	return 0;
 }
 
+function detectNemoAction(){
+	if [[ -e  "${nemo_action_mowish_local_path:?}" ]]; then 
+		infomsg "${info_uninstall_detected_nemo_action:?} ${nemo_action_mowish_local_path}"
+
+		return 1
+	fi
+
+	return 0;
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 
@@ -89,6 +99,9 @@ udolphin=$?
 detectNautilusScript
 unautilus=$?
 
+detectNemoAction
+unemo=$?
+
 infomsg "${info_uninstall_ask:?}"
 
 read -r confirm 
@@ -132,6 +145,16 @@ if (( unautilus==1 )); then
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_nautilus:?}"
+    	exit 255
+	fi
+fi
+
+if (( unemo==1 )); then 
+	infomsg "rm \"${nemo_action_mowish_local_path:?}\""
+	rm "${nemo_action_mowish_local_path:?}"
+	status=$?
+	if (( status!=0 )); then 
+		error "${info_uninstall_err_nemo:?}"
     	exit 255
 	fi
 fi
