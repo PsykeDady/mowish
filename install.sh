@@ -227,6 +227,7 @@ infomsg "mowish -h"
 
 dolphinService
 nautilusScript
+nemoAction
 
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
