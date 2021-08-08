@@ -1,0 +1,9 @@
+[Nemo Action]
+
+Active=true
+Name=%s
+Comment=%s
+Exec=mowish %%P
+Icon-Name=object-group
+Selection=none
+Extensions=any;

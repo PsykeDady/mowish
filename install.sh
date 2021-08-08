@@ -17,6 +17,139 @@ function loadTranslation() {
 	source "$translation_source"
 }
 
+function dolphinService(){
+	which dolphin > /dev/null 2> /dev/null
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_dolphin:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${kservices_local_path:?}" ]]; then 
+		mkdir "${kservices_local_path:?}"
+		status=$?
+		if ((status!=0)); then 
+			return 255;
+		fi
+	fi
+
+	if [[ -e "${kservices_mowish_local_path:?}" ]]; then 
+		infomsg "${info_install_dolphin_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	dolphinService="$(cat "$MOWISH_DIR/${kservices_resource_path:?}")"
+
+	# shellcheck disable=2059
+	dolphinService=$(printf "$dolphinService\n" "${info_install_dolphin_action_name:?}" "${info_install_dolphin_action_name:?}" "${organize_directory:?}")
+
+	infomsg "${info_install_dolphin_print:?}"
+
+	echo "$dolphinService" | tee "${kservices_mowish_local_path:?}"
+}
+
+function nautilusScript(){
+	which nautilus > /dev/null 2> /dev/null
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_nautilus:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
+		mkdir "${nautilus_scripts_path:?}"
+		status=$?
+		if ((status!=0)); then 
+			return 255;
+		fi
+	fi
+
+	nautilus_mowish_scripts_path="${nautilus_scripts_path:?}/${organize_directory:?}"
+
+	if [[ -e "${nautilus_mowish_scripts_path:?}" ]]; then 
+		infomsg "${info_install_nautilus_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	infomsg "cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
+	cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
+	chmod +x "$nautilus_mowish_scripts_path"
+
+	infomsg "${info_install_nautilus_ask_quit:=?}"
+
+	read -r confirm
+
+	if [[ $confirm =~ ${confirm_yes:?} ]]; then 
+		nautilus -q
+	else 
+		infomsg "${info_install_nautilus_quit_cmd:?}"
+	fi
+
+	infomsg "nautilus -q"
+}
+
+function nemoAction(){
+	which nemo > /dev/null 2> /dev/null
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_nemo:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${nemo_action_local_path:?}" ]]; then 
+		mkdir "${nemo_action_local_path:?}"
+		infomsg "mkdir \"${nemo_action_local_path:?}\""
+		status=$?
+		if ((status!=0)); then 
+			return 255;
+		fi
+	fi
+
+	if [[ -e "${nemo_action_mowish_local_path:?}" ]]; then 
+		infomsg "${info_install_nemo_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	nemoAction="$(cat "$MOWISH_DIR/${nemo_action_resource_path:?}")"
+
+	# shellcheck disable=2059
+	nemoAction=$(printf "$nemoAction\n" "${organize_directory:?}" "${organize_directory:?}")
+
+	infomsg "${info_install_nemo_print:?}"
+
+	echo "$nemoAction" | tee "${nemo_action_mowish_local_path:?}"
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 
@@ -26,9 +159,9 @@ else
 fi
 
 if [[ "$MOWISH_DIR" == "." ]]; then 
-	MOWISH_DIR=$PWD
+	MOWISH_DIR="$PWD"
 elif [[ ! "$MOWISH_DIR" =~ /.* ]]; then 
-	MOWISH_DIR=$PWD/$MOWISH_DIR
+	MOWISH_DIR="$PWD"/"$MOWISH_DIR"
 fi
 
 CONSTANTS_FILE="$MOWISH_DIR/constants.sh"
@@ -44,10 +177,10 @@ loadTranslation
 
 infomsg "${info_install_start:?}"
 
-exists=$(which mowish)
+exists=$(which mowish 2> /dev/null)
 status=$?
 
-if ((status==0)); then 
+if (( status==0 )); then 
 	# shellcheck disable=SC2059
 	infomsg "$(printf "${info_install_found_mowish:?}" "$exists")"
 	read -r confirm
@@ -92,6 +225,10 @@ fi
 infomsg "${info_install_finish:?}"
 infomsg "mowish -h"
 
+dolphinService
+nautilusScript
+nemoAction
+
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
 
@@ -117,5 +254,6 @@ else
 	infomsg "${info_install_man_remove:?}"
 	infomsg "rm -rf \"${MOWISH_DIR:?}\""
 fi
+
 
 exit 0
