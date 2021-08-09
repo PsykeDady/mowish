@@ -47,7 +47,7 @@ sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
 ### dolphin service
 If you have dolphin file manager ( usually from plasma DE) to install service you can write:   
 ```bash
-printf "$(cat resources/mowish_dolphin.desktop)" "organizeDirectory" "organizeDirectory" "Organize Directory" | sudo tee /usr/.local/share/kservices5/mowish.desktop
+printf "$(cat resources/mowish_dolphin.desktop)" "organizeDirectory" "organizeDirectory" "Organize Directory" | sudo tee /usr/share/kservices5/mowish.desktop
 ```
 
 You can now use mowish from actions context menu of dolphin (right click on empty space &rarr; actions &rarr; Organize Directory )
