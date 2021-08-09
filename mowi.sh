@@ -183,6 +183,10 @@ function main() {
 		case $1 in
 			"-d"     |"--debug" ) debug=1  ;;
 			"-r"     |"--recursive" ) recursive=1  ;;
+			"-v"     |"--version" ) 
+				infomsg $MOWISH_VERSION;
+				return 0
+			;;
 			"help"   | "-h"    | "--help" ) 
 				menu_help
 				return 0

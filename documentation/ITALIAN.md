@@ -19,6 +19,7 @@ Attualmente, mowish supporta:
 Lo script è facilmente estendibile
 ## Installazione
 
+### automatica
 clona il repository: 
 ```bash
 git clone https://github.com/PsykeDady/mowish
@@ -30,14 +31,96 @@ esegui lo script di installazione:
 ```
 
 Ti verrà chiesto se vuoi fare pulizia dei file di installazione.
+
+### manuale
+puoi installare il programma manualmente seguendo le seguenti istruzioni: 
+
+1. copia la cartella di mowish in `/usr/share`: 
+```bash 
+sudo cp -r mowish /usr/share/mowish 
+```
+1. collega lo script nella cartella `/usr/bin`  
+```bash
+sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
+```
+1. installa l'estensione per il tuo gestore dei file
+
+### servizio dolphin
+Per il gestore dei file dolphin ( normalmente installato con plasma DE ) puoi seguire le seguenti istruzioni :   
+```bash
+printf "$(cat resources/mowish_dolphin.desktop)" "organizzaCartelle" "organizzaCartelle" "Organizza Cartelle" | tee $HOME/.local/share/kservices5/mowish.desktop
+```
+
+Potrai quindi usare mowish dal menu azioni di dolphin (tasto destro su uno spazio vuoto &rarr; azioni &rarr; Organizza Cartelle)
+#### script nautilus
+
+Per il gestore dei file nautilus (normalmente installato con Gnome DE) puoi seguire le seguenti istruzioni:
+
+```bash 
+mkdir -p $HOME/.local/share/nautilus/scripts
+
+cp resource/mowish_nautilus.sh $HOME/.local/share/nautilus/scripts/"Organizza Cartelle"
+
+chmod +x $HOME/.local/share/nautilus/scripts/"Organizza Cartelle"
+```
+
+Potrai quindi usare mowish dal menu script di nautilus (seleziona un file qualunque della cartella da organizzare &rarr; tasto destro &rarr; scripts &rarr; Organizza Cartelle. Facendo tasto destro su una cartella mowish agirà su di essa) 
+
+> NOTA: 
+> 
+> Per via delle limitazioni di Nautilus file manager il menu script apparirà soltanto se si preme tasto destro su un file della cartella. 
+
+#### azione nemo
+Per il gestore dei file nemo (normalmente installato con Cinnamon DE) puoi seguire le seguenti istruzioni: 
+
+```bash
+printf "$(cat resources/mowish_nemo.nemo_action)" "Organizza Cartella" "Organizza Cartella" | tee $HOME/.local/share/nemo/actions/mowish.nemo_action
+```
+
+Potrai quindi usare mowish dal menu contestuale di nemo (Tasto destro su uno spazio vuoto &rarr; Organizza cartella )
+
 ## Disinstallazione
 
+### automatica
 Puoi usare lo script di disinstallazione:
 
 ```bash
 /usr/share/mowish/uninstall.sh
 ```
 
+### manuale
+
+cancella il collegamento simbolico di mowish in `/usr/bin` :
+```bash
+sudo rm /usr/bin/mowish
+```
+
+cancella la cartella mowish all'interno di `/usr/bin`
+```bash
+sudo rm -rf /usr/bin/mowish
+```
+
+cancella il file per il tuo gestore file se ne avevi installato uno.
+
+#### servizio dolphin
+cancella il file di servizio dalla cartella `$HOME/.local/share/kservices5`: 
+
+```bash
+rm $HOME/.local/share/kservices5/mowish.desktop
+```
+#### script nautilus
+cancella lo script dalla cartella `$HOME/.local/share/nautilus/scripts`
+
+```bash
+rm $HOME/.local/share/nautilus/scripts/"Organize Directory"
+```
+
+#### azione nemo
+cancella l'azione dalla cartella `$HOME/.local/share/nemo/actions` 
+
+```bash
+rm $HOME/.local/share/nemo/actions/mowish.nemo_action
+```
 ## Uso
 
 Puoi fare ordine nella cartella corrente scrivendo semplicemente: 
@@ -51,11 +134,21 @@ o specificare un percorso scrivendo:
 mowish percorso/cartella
 ```
 
-con il flag `-d` o `--debug` lo script stamperà ogni operazion ( utile per il debugging )
+
+### Opzioni
+
+con il flag `-d` o `--debug` verranno stampate tutte le istruzioni ed i passaggi ( utile per il debug )
 ```bash
 movish -d path/to/dir
 ```
 
-con `-r` o `--recursive` l'operazione diventerà ricorsiva, anche le sotto cartelle verranno riorganizzate.
-con `-h` o `--help` accederai al menu di help, il programma terminerà subito.
-con `-e` o `--errors` puoi vedere tutti i codici di errore, il programma terminerà subito.
+con il flag `-r` o `--recursive` il software diventa ricorsivo, ogni sotto cartella verrà riorganizzata.
+```bash
+mowish -r path/to/dir
+```
+
+### Comandi per la stampa delle informazioni ( stampa ed esci )
+
+con il flag `-h` o `--help` viene visualizzato questo menù di aiuto
+con il flag `-e` o `--errors` viene visualizzata una lista di codici errore
+con il flag `-v` o `--version` viene visualizzata la versione del programma
