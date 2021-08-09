@@ -93,7 +93,7 @@ function nautilusScript(){
 
 	infomsg "sudo cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
 	sudo cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
-	chmod +x "$nautilus_mowish_scripts_path"
+	sudo chmod +x "$nautilus_mowish_scripts_path"
 
 	infomsg "${info_install_nautilus_ask_quit:=?}"
 
