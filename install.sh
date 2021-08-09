@@ -33,7 +33,7 @@ function dolphinService(){
 	fi
 
 	if [[ ! -d "${kservices_local_path:?}" ]]; then 
-		mkdir "${kservices_local_path:?}"
+		sudo mkdir "${kservices_local_path:?}"
 		status=$?
 		if ((status!=0)); then 
 			return 255;
@@ -74,7 +74,7 @@ function nautilusScript(){
 	fi
 
 	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
-		mkdir "${nautilus_scripts_path:?}"
+		sudo mkdir -p "${nautilus_scripts_path:?}"
 		status=$?
 		if ((status!=0)); then 
 			return 255;
@@ -124,7 +124,7 @@ function nemoAction(){
 	fi
 
 	if [[ ! -d "${nemo_action_local_path:?}" ]]; then 
-		mkdir "${nemo_action_local_path:?}"
+		sudo mkdir "${nemo_action_local_path:?}"
 		infomsg "mkdir \"${nemo_action_local_path:?}\""
 		status=$?
 		if ((status!=0)); then 
