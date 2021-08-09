@@ -154,11 +154,11 @@ function order(){
 			*"image"*|*"PNG"*) where="${PICTURE_DIR:?}";;
 			*"PDF"*|*"document"*) where="${DOCUMENT_DIR:?}" ;;
 			*"Media"*|*"MP4"*|*"Matroska data"*) where="${VIDEO_DIR:?}" ;;
+			*"archive"*|*"compressed"*) where="${ARCHIVE_DIR:?}" ;; 
 			*"script"*|*"java"*) where="${SCRIPT_DIR:?}" ;; 
 			*"text"*) where="${TEXT_DIR:?}" ;;
 			*"Debian binary"* | *"RPM v"*" bin"* ) where="${PACKAGES_DIR:?}" ;; 
 			*"ISO 9660 CD-ROM"*) where="${DISK_IMAGE_DIR:?}" ;; 
-			*"archive"*|*"compressed"*) where="${ARCHIVE_DIR:?}" ;; 
 			*"BINARY"*|*"executable"*) where="${BIN_DIR:?}" ;; 
 		esac
 
