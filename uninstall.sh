@@ -130,8 +130,8 @@ if (( status != 0 )) &&  [[ -d $installation_dir ]]; then
 fi
 
 if (( udolphin==1 )); then 
-	infomsg "rm \"${kservices_mowish_local_path:?}\""
-	rm "${kservices_mowish_local_path:?}"
+	infomsg "sudo rm \"${kservices_mowish_local_path:?}\""
+	sudo rm "${kservices_mowish_local_path:?}"
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_dolphin:?}"
@@ -140,8 +140,8 @@ if (( udolphin==1 )); then
 fi
 
 if (( unautilus==1 )); then 
-	infomsg "rm \"${nautilus_scripts_path:?}/${organize_directory:?}\""
-	rm "${nautilus_scripts_path:?}/${organize_directory:?}"
+	infomsg "sudo rm \"${nautilus_scripts_path:?}/${organize_directory:?}\""
+	sudo rm "${nautilus_scripts_path:?}/${organize_directory:?}"
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_nautilus:?}"
@@ -150,8 +150,8 @@ if (( unautilus==1 )); then
 fi
 
 if (( unemo==1 )); then 
-	infomsg "rm \"${nemo_action_mowish_local_path:?}\""
-	rm "${nemo_action_mowish_local_path:?}"
+	infomsg "sudo rm \"${nemo_action_mowish_local_path:?}\""
+	sudo rm "${nemo_action_mowish_local_path:?}"
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_nemo:?}"

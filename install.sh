@@ -55,7 +55,7 @@ function dolphinService(){
 
 	infomsg "${info_install_dolphin_print:?}"
 
-	echo "$dolphinService" | tee "${kservices_mowish_local_path:?}"
+	infomsg "$dolphinService" | sudo tee "${kservices_mowish_local_path:?}"
 }
 
 function nautilusScript(){
@@ -91,8 +91,8 @@ function nautilusScript(){
 		fi
 	fi
 
-	infomsg "cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
-	cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
+	infomsg "sudo cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
+	sudo cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
 	chmod +x "$nautilus_mowish_scripts_path"
 
 	infomsg "${info_install_nautilus_ask_quit:=?}"
@@ -147,7 +147,7 @@ function nemoAction(){
 
 	infomsg "${info_install_nemo_print:?}"
 
-	echo "$nemoAction" | tee "${nemo_action_mowish_local_path:?}"
+	infomsg "$nemoAction" | sudo tee "${nemo_action_mowish_local_path:?}"
 }
 
 MOWISH_DIR="$(readlink "$0")"
