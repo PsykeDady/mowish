@@ -47,7 +47,7 @@ sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
 ### dolphin service
 If you have dolphin file manager ( usually from plasma DE) to install service you can write:   
 ```bash
-printf "$(cat resources/mowish_dolphin.desktop)" "organizeDirectory" "organizeDirectory" "Organize Directory" | tee $HOME/.local/share/kservices5/mowish.desktop
+printf "$(cat resources/mowish_dolphin.desktop)" "organizeDirectory" "organizeDirectory" "Organize Directory" | sudo tee /usr/.local/share/kservices5/mowish.desktop
 ```
 
 You can now use mowish from actions context menu of dolphin (right click on empty space &rarr; actions &rarr; Organize Directory )
@@ -65,10 +65,10 @@ chmod +x $HOME/.local/share/nautilus/scripts/"Organize Directory"
 
 You can now use mowish from script context menu of nautilus (select random file from directory &rarr; right click &rarr; scripts &rarr; Organize Directory. You can also run with right click on directory to order) 
 
-> NOTE: 
-> 
-> Due to nautilus limitation, script menu will appear only if you click with right button on file. 
+##### **NAUTILUS LIMITATIONS**
 
+- script menu will appear only if you click with right button on file. 
+- script is not global installable, every user have to install script in their own directory
 #### nemo action
 If you have nemo file manager (usually from Cinnamon DE) to install script you can write: 
 

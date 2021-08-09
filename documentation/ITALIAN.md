@@ -48,7 +48,7 @@ sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish
 ### servizio dolphin
 Per il gestore dei file dolphin ( normalmente installato con plasma DE ) puoi seguire le seguenti istruzioni :   
 ```bash
-printf "$(cat resources/mowish_dolphin.desktop)" "organizzaCartelle" "organizzaCartelle" "Organizza Cartelle" | tee $HOME/.local/share/kservices5/mowish.desktop
+printf "$(cat resources/mowish_dolphin.desktop)" "organizzaCartelle" "organizzaCartelle" "Organizza Cartelle" | sudo tee /usr/share/kservices5/mowish.desktop
 ```
 
 Potrai quindi usare mowish dal menu azioni di dolphin (tasto destro su uno spazio vuoto &rarr; azioni &rarr; Organizza Cartelle)
@@ -66,9 +66,10 @@ chmod +x $HOME/.local/share/nautilus/scripts/"Organizza Cartelle"
 
 Potrai quindi usare mowish dal menu script di nautilus (seleziona un file qualunque della cartella da organizzare &rarr; tasto destro &rarr; scripts &rarr; Organizza Cartelle. Facendo tasto destro su una cartella mowish agirà su di essa) 
 
-> NOTA: 
-> 
-> Per via delle limitazioni di Nautilus file manager il menu script apparirà soltanto se si preme tasto destro su un file della cartella. 
+##### **LIMITAZIONI DI NAUTILUS**
+
+- Il menu script appare solo se si selezionano uno o più file. 
+- lo script non viene installato per tutti gli utenti, ogni utente dovrà installare il suo
 
 #### azione nemo
 Per il gestore dei file nemo (normalmente installato con Cinnamon DE) puoi seguire le seguenti istruzioni: 

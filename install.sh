@@ -74,7 +74,7 @@ function nautilusScript(){
 	fi
 
 	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
-		sudo mkdir -p "${nautilus_scripts_path:?}"
+		mkdir -p "${nautilus_scripts_path:?}"
 		status=$?
 		if ((status!=0)); then 
 			return 255;
@@ -91,9 +91,9 @@ function nautilusScript(){
 		fi
 	fi
 
-	infomsg "sudo cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
-	sudo cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
-	sudo chmod +x "$nautilus_mowish_scripts_path"
+	infomsg "cp -f \"$MOWISH_DIR/${nautilus_mowish_resource:?}\" \"${nautilus_mowish_scripts_path:?}\"\n"
+	cp -f "$MOWISH_DIR/${nautilus_mowish_resource:?}" "${nautilus_mowish_scripts_path:?}"
+	chmod +x "$nautilus_mowish_scripts_path"
 
 	infomsg "${info_install_nautilus_ask_quit:=?}"
 
