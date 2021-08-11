@@ -271,6 +271,7 @@ infomsg "mowish -h"
 dolphinService
 nautilusScript
 nemoAction
+elementaryContract
 
 infomsg "${info_install_ask_remove:?}"
 read -r confirm
