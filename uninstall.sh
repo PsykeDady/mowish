@@ -173,8 +173,8 @@ if (( unemo==1 )); then
 fi
 
 if (( uelementary==1 )); then 
-	infomsg "sudo rm \"${nemo_action_mowish_local_path:?}\""
-	sudo rm "${nemo_action_mowish_local_path:?}"
+	infomsg "sudo rm \"${elementary_mowish_local_path:?}\""
+	sudo rm "${elementary_mowish_local_path:?}"
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_elementary:?}"
