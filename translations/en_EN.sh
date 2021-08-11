@@ -101,6 +101,9 @@ export info_install_nautilus_quit_cmd="\nYou can close by yourself writing:"
 export info_install_ask_nemo="\Nemo file manager detected. Install menu action for this file manager? [Y/n]"
 export info_install_nemo_exists="nemo action already exists, overwrite? [Y/n]"
 export info_install_nemo_print="writing this file as nemo action:\n"
+export info_install_ask_elementary="\nPantheon (Elementary OS) file manager detected. Install menu action (or contract) for this file manager? [Y/n]"
+export info_install_elementary_exists="Pantheon contract already exists, overwrite? [Y/n]"
+export info_install_elementary_print="writing this contract for pantheon:\n"
 
 ### uninstall
 export info_uninstall_start="Start of uninstallation of MOWISH, operations log will be printed on output with every istruction that script will do. In case of problems or bugs open an ISSUE on github: http://github.com/PsykeDady/movish\n"

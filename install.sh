@@ -150,6 +150,49 @@ function nemoAction(){
 	infomsg "$nemoAction" | sudo tee "${nemo_action_mowish_local_path:?}"
 }
 
+function elementaryContract(){
+	which io.elementary.files > /dev/null 2> /dev/null 
+
+	status=$?
+
+	if (( status!=0 )); then 
+		return 0; 
+	fi
+
+	infomsg "${info_install_ask_elementary:?}"
+	read -r confirm 
+
+	if [[ $confirm =~ ${decline_no:?} ]]; then 
+		return 0;
+	fi
+
+	if [[ ! -d "${elementary_local_path:?}" ]]; then 
+		sudo mkdir "${elementary_local_path:?}"
+		infomsg "sudo mkdir \"${elementary_local_path:?}\""
+		status=$?
+		if ((status!=0)); then 
+			return 255;
+		fi
+	fi
+
+	if [[ -e "${elementary_mowish_local_path:?}" ]]; then 
+		infomsg "${info_install_elementary_exists:?}"
+		read -r confirm 
+		if [[ $confirm =~ ${decline_no} ]]; then
+			return 0 
+		fi
+	fi
+
+	elementaryContract="$(cat "$MOWISH_DIR/${elementary_resource_path:?}")"
+
+	# shellcheck disable=2059
+	elementaryContract=$(printf "$elementaryContract\n" "${organize_directory:?}" "${organize_directory:?}")
+
+	infomsg "${info_install_elementary_print:?}"
+
+	infomsg "$elementaryContract" | sudo tee "${elementary_mowish_local_path:?}"
+}
+
 MOWISH_DIR="$(readlink "$0")"
 
 if [ "$MOWISH_DIR" == "" ]; then 
