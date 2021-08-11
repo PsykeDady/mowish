@@ -73,10 +73,20 @@ You can now use mowish from script context menu of nautilus (select random file 
 If you have nemo file manager (usually from Cinnamon DE) to install script you can write: 
 
 ```bash
-printf "$(cat resources/mowish_nemo.nemo_action)" "Organize Directory" "Organize Directory" | tee $HOME/.local/share/nemo/actions/mowish.nemo_action
+printf "$(cat resources/mowish_nemo.nemo_action)" "Organize Directory" "Organize Directory" | tee /usr/share/nemo/actions/mowish.nemo_action
 ```
 
 You can now use mowish from context menu of nemo (right click on empty space &rarr; Organize Directory )
+
+#### pantheon contract ( elementary file manager)
+If you have elementary file manager (usually from Pantheon DE) to install script you can write: 
+
+```bash
+printf "$(printf resources/mowish_elementary.contract)" "Organizza Cartella" "Organizza Cartella" | sudo tee /usr/share/contractor/mowish.contract
+```
+
+You can now use mowish from context menu of elementary file manager (right click on empty space &rarr; Organize Directory )
+
 ## uninstall 
 
 ### automatic
@@ -101,10 +111,10 @@ sudo rm -rf /usr/bin/mowish
 delete file for your file manager if you had installed one.
 
 #### dolphin service
-remove service file from `$HOME/.local/share/kservices5`: 
+remove service file from `/usr/share/kservices5`: 
 
 ```bash
-rm $HOME/.local/share/kservices5/mowish.desktop
+sudo /usr/share/kservices5/mowish.desktop
 ```
 #### nautilus script
 remove script from `$HOME/.local/share/nautilus/scripts`
@@ -114,10 +124,17 @@ rm $HOME/.local/share/nautilus/scripts/"Organize Directory"
 ```
 
 #### nemo actions
-remove action from `$HOME/.local/share/nemo/actions` 
+remove action from `/usr/share/nemo/actions` 
 
 ```bash
-rm $HOME/.local/share/nemo/actions/mowish.nemo_action
+sudo /usr/share/nemo/actions/mowish.nemo_action
+```
+
+#### elementary contract
+delete elementary contract from `/usr/share/contractor` directory 
+
+```bash
+sudo /usr/share/contractor/mowish.contract
 ```
 
 ## how to use 
