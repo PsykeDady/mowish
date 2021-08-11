@@ -9,14 +9,14 @@
 # 										#
 # Author  = PsykeDady					#
 # License = GPL3.0						#
-# Version = 0.2.1						#
+# Version = 0.2.2						#
 # 										#
 # read license at the end of this file	#
 #########################################
 
 # GLOBAL VARIABLES
 ## MOWISH VERSION 
-export MOWISH_VERSION=0.2.1
+export MOWISH_VERSION=0.2.2
 
 ## DEBUG ZONE
 ### debug flag
@@ -150,7 +150,7 @@ function order(){
 
 		where="${UNKNOWN_DIR:?}"
 		case "$tipo" in 
-			*"Audio"*) where="${MUSIC_DIR:?}" ;; 
+			*[Aa][Uu][Dd][Ii][Oo]*) where="${MUSIC_DIR:?}" ;; 
 			*"image"*|*"PNG"*) where="${PICTURE_DIR:?}";;
 			*"PDF"*|*"document"*) where="${DOCUMENT_DIR:?}" ;;
 			*"Media"*|*"MP4"*|*"Matroska data"*) where="${VIDEO_DIR:?}" ;;
