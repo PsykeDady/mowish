@@ -4,4 +4,3 @@ Icon=object-group
 Description=%s
 MimeType=inode/*;application/octet-stream
 Exec=mowish "%%P"
-Gettext-Domain=file-roller
