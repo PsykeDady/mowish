@@ -1,0 +1,8 @@
+<action>
+	<icon>object-group</icon>
+	<name>%s</name>
+	<command>mowish %f</command>
+	<description>%s</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>

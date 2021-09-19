@@ -15,6 +15,8 @@ export nemo_action_resource_path="resources/mowish_nemo.nemo_action"
 export elementary_local_path="/usr/share/contractor"
 export elementary_mowish_local_path="$elementary_local_path/mowish.contract"
 export elementary_resource_path="resources/mowish_elementary.contract"
+export thunar_local_path="/usr/share/thunar/"
+export thunar_mowish_local_path=""
 
 ### TRANSLATIONS 
 export TRANSLATION_DIR="translations"

@@ -104,6 +104,8 @@ export info_install_nemo_print="scrittura del file nelle azioni nemo:\n"
 export info_install_ask_elementary="\nGestore file di pantheon (elementary OS) individuato, installare azione (contratto) nel menu? [S/n]"
 export info_install_elementary_exists="Contratto di pantheon esistente, sovrascrivere? [S/n]"
 export info_install_elementary_print="scrittura del contratto di pantheon:\n"
+export info_install_ask_thunar="\nGestore file di thunar (XFCE) individuato, installare azione nel menu? [S/n]"
+
 
 ### uninstall
 export info_uninstall_start="Inizia la rimozione di MOWISH, seguiranno i log delle operazioni che vengono effettuate per eliminare il software. In caso di problemi aprire un ISSUE su github: http://github.com/PsykeDady/movish\n"
