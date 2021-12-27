@@ -73,6 +73,8 @@ function nautilusScript(){
 		return 0;
 	fi
 
+	infomsg "${info_install_nautilus_local_warning:?}"
+
 	if [[ ! -d "${nautilus_scripts_path:?}" ]]; then 
 		mkdir -p "${nautilus_scripts_path:?}"
 		status=$?
@@ -209,31 +211,45 @@ function thunarAction(){
 		return 0;
 	fi
 
-	if [[ ! -d "${elementary_local_path:?}" ]]; then 
-		sudo mkdir "${elementary_local_path:?}"
-		infomsg "sudo mkdir \"${elementary_local_path:?}\""
+	infomsg "${info_install_thunar_local_warning:?}"
+
+	if [[ ! -d "${thunar_local_path:?}" ]]; then 
+		mkdir "${thunar_local_path:?}"
+		infomsg "mkdir \"${thunar_local_path:?}\""
 		status=$?
 		if ((status!=0)); then 
 			return 255;
 		fi
 	fi
 
-	if [[ -e "${elementary_mowish_local_path:?}" ]]; then 
-		infomsg "${info_install_elementary_exists:?}"
+	if [[ -e "${thunar_mowish_local_path:?}" ]] &&  grep -q "mowish" "${thunar_mowish_local_path:?}"; then 
+
+		infomsg "${info_install_thunar_exists:?}"
 		read -r confirm 
 		if [[ $confirm =~ ${decline_no} ]]; then
 			return 0 
 		fi
-	fi
 
-	elementaryContract="$(cat "$MOWISH_DIR/${elementary_resource_path:?}")"
+		nl=$(wc -l "${thunar_resource_path:?}")
+		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | cut -f 1 )
+		nlmow=$( cat -n "${thunar_resource_path:?}" | grep mowish | cut -f 1 )
+
+		nlf=$((nlf-nlmow))
+
+		echo -e "$(head -$nlf "${thunar_resource_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_resource_path:?}")" > "${thunar_resource_path:?}"
+
+	fi
+	nl=$(wc -l "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
+
+	thunarActions="$(head -$((nl-1)) "${thunar_mowish_local_path:?}")"
+	thunarAction="$(cat "${thunar_resource_path:?}")"
 
 	# shellcheck disable=2059
-	elementaryContract=$(printf "$elementaryContract\n" "${organize_directory:?}" "${organize_directory:?}")
+	thunarAction=$(printf "$thunarAction\n" "${organize_directory:?}" "${organize_directory:?}")
 
 	infomsg "${info_install_elementary_print:?}"
 
-	infomsg "$elementaryContract" | sudo tee "${elementary_mowish_local_path:?}"
+	infomsg "$thunarActions\n$thunarAction\n<actions>" | sudo tee "${thunar_mowish_local_path:?}"
 }
 
 MOWISH_DIR="$(readlink "$0")"

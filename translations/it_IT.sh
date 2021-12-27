@@ -95,6 +95,7 @@ export info_install_dolphin_exists="Servizio dolphin esistente, sovrascrivere? [
 export info_install_dolphin_action_name="organizzaCartella"
 export info_install_dolphin_print="scrittura del file in kservices\n"
 export info_install_ask_nautilus="\nFile Manager Nautilus individuato. Installare una voce di sotto menu? (la troverai sotto la voce script, premendo il tasto destro su un file) [S/n]"
+export info_install_nautilus_local_warning="NOTA BENE: non \u00e8 possibile installare il menu di contesto globalmente con nautilus. Ripetere l'installazione per ogni utente se necessario."
 export info_install_nautilus_exists="lo script nautilus esiste già, vuoi sovrascriverlo? [S/n]"
 export info_install_nautilus_ask_quit="\nPer funzionare, nautilus ha bisogno di riavviarsi. Posso chiuderlo per te? [s/N]"
 export info_install_nautilus_quit_cmd="\nPuoi chiuderlo tu stesso digitando:"
@@ -105,6 +106,9 @@ export info_install_ask_elementary="\nGestore file di pantheon (elementary OS) i
 export info_install_elementary_exists="Contratto di pantheon esistente, sovrascrivere? [S/n]"
 export info_install_elementary_print="scrittura del contratto di pantheon:\n"
 export info_install_ask_thunar="\nGestore file di thunar (XFCE) individuato, installare azione nel menu? [S/n]"
+export info_install_thunar_local_warning="NOTA BENE: non \u00e8 possibile installare il menu di contesto globalmente con thunar. Ripetere l'installazione per ogni utente se necessario."
+export info_install_thunar_exists="Azione di Thunar esistente, sovrascrivere? [S/n]"
+export info_install_thunar_print="scrittura azione di thunar:\n"
 
 
 ### uninstall
