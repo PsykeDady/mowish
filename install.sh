@@ -222,6 +222,10 @@ function thunarAction(){
 		fi
 	fi
 
+	if [[ ! -e "${thunar_mowish_local_path:?}" ]]; then 
+		echo -e "<actions>\n</actions>" > "${thunar_mowish_local_path:?}"
+	fi
+
 	if [[ -e "${thunar_mowish_local_path:?}" ]] &&  grep -q "mowish" "${thunar_mowish_local_path:?}"; then 
 
 		infomsg "${info_install_thunar_exists:?}"
@@ -247,7 +251,7 @@ function thunarAction(){
 	# shellcheck disable=2059
 	thunarAction=$(printf "$thunarAction\n" "${organize_directory:?}" "${organize_directory:?}")
 
-	infomsg "${info_install_elementary_print:?}"
+	infomsg "${info_install_thunar_print:?}"
 
 	infomsg "$thunarActions\n$thunarAction\n<actions>" | sudo tee "${thunar_mowish_local_path:?}"
 }
