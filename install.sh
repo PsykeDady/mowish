@@ -235,7 +235,7 @@ function thunarAction(){
 			return 0 
 		fi
 
-		nl=$(wc -l "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ')
+		nl=$(grep -c "" "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ')
 		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' )
 		nlmow=$( cat -n "$MOWISH_DIR/${thunar_resource_path:?}" | grep mowish | awk '{print $1}' )
 
@@ -244,7 +244,7 @@ function thunarAction(){
 		infomsg "$(head -$nlf "${thunar_mowish_local_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_mowish_local_path:?}")" | tee "${thunar_mowish_local_path:?}"
 
 	fi
-	nl=$(wc -l "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
+	nl=$(grep -c "" "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
 
 	thunarActions="$(head -$((nl-1)) "${thunar_mowish_local_path:?}")"
 	thunarAction="$(cat "$MOWISH_DIR/${thunar_resource_path:?}")"
