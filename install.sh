@@ -235,8 +235,8 @@ function thunarAction(){
 		fi
 
 		nl=$(wc -l "${thunar_resource_path:?}" | cut -f 1 -d ' ')
-		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | cut -f 1 -d ' ' )
-		nlmow=$( cat -n "${thunar_resource_path:?}" | grep mowish | cut -f 1 -d ' ' )
+		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' )
+		nlmow=$( cat -n "${thunar_resource_path:?}" | grep mowish | awk '{print $1}' )
 
 		nlf=$((nlf-nlmow))
 
