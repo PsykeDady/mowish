@@ -223,7 +223,8 @@ function thunarAction(){
 	fi
 
 	if [[ ! -e "${thunar_mowish_local_path:?}" ]]; then 
-		infomsg "<actions>\n</actions>" > "${thunar_mowish_local_path:?}"
+		infomsg "${info_install_uca_not_exists:?}"
+		infomsg "<actions>\n</actions>" | tee "${thunar_mowish_local_path:?}"
 	fi
 
 	if grep -q "mowish" "${thunar_mowish_local_path:?}"; then 

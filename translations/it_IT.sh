@@ -107,6 +107,7 @@ export info_install_elementary_exists="Contratto di pantheon esistente, sovrascr
 export info_install_elementary_print="scrittura del contratto di pantheon:\n"
 export info_install_ask_thunar="\nGestore file di thunar (XFCE) individuato, installare azione nel menu? [S/n]"
 export info_install_thunar_local_warning="NOTA BENE: non \u00e8 possibile installare il menu di contesto globalmente con thunar. Ripetere l'installazione per ogni utente se necessario."
+export info_install_uca_not_exists="File uca.xml inesistente. Creazione"
 export info_install_thunar_exists="Azione di Thunar esistente, sovrascrivere? [S/n]"
 export info_install_thunar_print="scrittura azione di thunar:\n"
 
