@@ -235,15 +235,18 @@ function thunarAction(){
 			return 0 
 		fi
 
-		nls_resource=$(grep -c "" "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ')
-		nls_uca=$(grep -c "" "${thunar_mowish_local_path:?}" | cut -f 1 -d ' ')
-		nl_mowish_resource=$( cat -n "$MOWISH_DIR/${thunar_resource_path:?}" | grep mowish | awk '{print $1}' )
-		nl_mowish_uca=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' )
+		nls_resource=$(grep -c "" "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ') ; echo "nls_resource $nls_resource"
+		nls_uca=$(grep -c "" "${thunar_mowish_local_path:?}" | cut -f 1 -d ' ') ; echo "nls_uca $nls_uca"
+		nl_mowish_resource=$( cat -n "$MOWISH_DIR/${thunar_resource_path:?}" | grep mowish | awk '{print $1}' ) ; echo "nl_mowish_resource $nl_mowish_resource"
+		nl_mowish_uca=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' ) ; echo "nl_mowish_uca $nl_mowish_uca"
 
-		headnl=$((nl_mowish_uca-nl_mowish_resource)) # last row before mowish action
-		tailnl=$((nls_uca-headnl+nls_resource)) # the first row after mowish action
+		headnl=$((nl_mowish_uca-nl_mowish_resource)); echo "headnl $headnl" # last row before mowish action 
+		tailnl=$((nls_uca-headnl+nls_resource)); echo "tailnl $tailnl" # the first row after mowish action 
 
-		infomsg "$(head -"$headnl" "${thunar_mowish_local_path:?}")\n$(tail -"$tailnl" "${thunar_mowish_local_path:?}")" | tee "${thunar_mowish_local_path:?}"
+		headuca=$(head -"$headnl" "${thunar_mowish_local_path:?}"); echo -e "headuca $headuca\n"
+		tailuca=$(tail -"$tailnl" "${thunar_mowish_local_path:?}"); echo -e "tailuca $tailuca\n"
+
+		infomsg "$headuca\n$tailuca | tee "${thunar_mowish_local_path:?}"
 
 	fi
 	nl=$(grep -c "" "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
