@@ -240,7 +240,7 @@ function thunarAction(){
 
 		nlf=$((nlf-nlmow))
 
-		echo -e "$(head -$nlf "${thunar_resource_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_resource_path:?}")" > "${thunar_resource_path:?}"
+		echo -e "$(head -$nlf "${thunar_mowish_local_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_mowish_local_path:?}")" > "${thunar_mowish_local_path:?}"
 
 	fi
 	nl=$(wc -l "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
