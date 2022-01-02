@@ -223,7 +223,7 @@ function thunarAction(){
 	fi
 
 	if [[ ! -e "${thunar_mowish_local_path:?}" ]]; then 
-		echo -e "<actions>\n</actions>" > "${thunar_mowish_local_path:?}"
+		infomsg "<actions>\n</actions>" > "${thunar_mowish_local_path:?}"
 	fi
 
 	if grep -q "mowish" "${thunar_mowish_local_path:?}"; then 
@@ -240,7 +240,7 @@ function thunarAction(){
 
 		nlf=$((nlf-nlmow))
 
-		echo -e "$(head -$nlf "${thunar_mowish_local_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_mowish_local_path:?}")" > "${thunar_mowish_local_path:?}"
+		infomsg "$(head -$nlf "${thunar_mowish_local_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_mowish_local_path:?}")" | tee "${thunar_mowish_local_path:?}"
 
 	fi
 	nl=$(wc -l "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
@@ -253,7 +253,7 @@ function thunarAction(){
 
 	infomsg "${info_install_thunar_print:?}"
 
-	infomsg "$thunarActions\n$thunarAction\n<actions>" | sudo tee "${thunar_mowish_local_path:?}"
+	infomsg "$thunarActions\n$thunarAction\n</actions>" | sudo tee "${thunar_mowish_local_path:?}"
 }
 
 MOWISH_DIR="$(readlink "$0")"
