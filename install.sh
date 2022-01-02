@@ -241,7 +241,7 @@ function thunarAction(){
 		nl_mowish_uca=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' ) ; echo "nl_mowish_uca $nl_mowish_uca"
 
 		headnl=$((nl_mowish_uca-nl_mowish_resource)); echo "headnl $headnl" # last row before mowish action 
-		tailnl=$((nls_uca-headnl+nls_resource)); echo "tailnl $tailnl" # the first row after mowish action 
+		tailnl=$((nls_uca-headnl-nls_resource)); echo "tailnl $tailnl" # the first row after mowish action 
 
 		headuca=$(head -"$headnl" "${thunar_mowish_local_path:?}"); echo -e "headuca $headuca\n"
 		tailuca=$(tail -"$tailnl" "${thunar_mowish_local_path:?}"); echo -e "tailuca $tailuca\n"
