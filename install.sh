@@ -226,7 +226,7 @@ function thunarAction(){
 		echo -e "<actions>\n</actions>" > "${thunar_mowish_local_path:?}"
 	fi
 
-	if [[ -e "${thunar_mowish_local_path:?}" ]] &&  grep -q "mowish" "${thunar_mowish_local_path:?}"; then 
+	if grep -q "mowish" "${thunar_mowish_local_path:?}"; then 
 
 		infomsg "${info_install_thunar_exists:?}"
 		read -r confirm 
@@ -234,9 +234,9 @@ function thunarAction(){
 			return 0 
 		fi
 
-		nl=$(wc -l "${thunar_resource_path:?}")
-		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | cut -f 1 )
-		nlmow=$( cat -n "${thunar_resource_path:?}" | grep mowish | cut -f 1 )
+		nl=$(wc -l "${thunar_resource_path:?}" | cut -f 1 -d ' ')
+		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | cut -f 1 -d ' ' )
+		nlmow=$( cat -n "${thunar_resource_path:?}" | grep mowish | cut -f 1 -d ' ' )
 
 		nlf=$((nlf-nlmow))
 
