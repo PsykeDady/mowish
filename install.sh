@@ -235,13 +235,15 @@ function thunarAction(){
 			return 0 
 		fi
 
-		nl=$(grep -c "" "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ')
-		nlf=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' )
-		nlmow=$( cat -n "$MOWISH_DIR/${thunar_resource_path:?}" | grep mowish | awk '{print $1}' )
+		nls_resource=$(grep -c "" "$MOWISH_DIR/${thunar_resource_path:?}" | cut -f 1 -d ' ')
+		nls_uca=$(grep -c "" "${thunar_mowish_local_path:?}" | cut -f 1 -d ' ')
+		nl_mowish_resource=$( cat -n "$MOWISH_DIR/${thunar_resource_path:?}" | grep mowish | awk '{print $1}' )
+		nl_mowish_uca=$( cat -n "${thunar_mowish_local_path:?}" | grep mowish | awk '{print $1}' )
 
-		nlf=$((nlf-nlmow))
+		headnl=$((nl_mowish_uca-nl_mowish_resource)) # last row before mowish action
+		tailnl=$((nls_uca-headnl+nls_resource)) # the first row after mowish action
 
-		infomsg "$(head -$nlf "${thunar_mowish_local_path:?}")\n$(tail -$((nl-nlf-nlmow-1)) "${thunar_mowish_local_path:?}")" | tee "${thunar_mowish_local_path:?}"
+		infomsg "$(head -"$headnl" "${thunar_mowish_local_path:?}")\n$(tail -"$tailnl" "${thunar_mowish_local_path:?}")" | tee "${thunar_mowish_local_path:?}"
 
 	fi
 	nl=$(grep -c "" "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
