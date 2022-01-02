@@ -246,7 +246,7 @@ function thunarAction(){
 		headuca=$(head -"$headnl" "${thunar_mowish_local_path:?}"); echo -e "headuca $headuca\n"
 		tailuca=$(tail -"$tailnl" "${thunar_mowish_local_path:?}"); echo -e "tailuca $tailuca\n"
 
-		infomsg "$headuca\n$tailuca | tee "${thunar_mowish_local_path:?}"
+		infomsg "$headuca\n$tailuca" | tee "${thunar_mowish_local_path:?}"
 
 	fi
 	nl=$(grep -c "" "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
