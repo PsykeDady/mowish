@@ -39,7 +39,7 @@ function detectNautilusScript(){
 
 function detectNemoAction(){
 	if [[ -e  "${nemo_action_mowish_local_path:?}" ]]; then 
-		infomsg "${info_uninstall_detected_nemo_action:?} ${nemo_action_mowish_local_path}"
+		infomsg "${info_uninstall_detected_nemo_action:?} ${nemo_action_mowish_local_path:?}"
 
 		return 1
 	fi
@@ -49,7 +49,17 @@ function detectNemoAction(){
 
 function detectElementaryContract(){
 	if [[ -e  "${elementary_mowish_local_path:?}" ]]; then 
-		infomsg "${info_uninstall_detected_elementary:?} ${elementary_mowish_local_path}"
+		infomsg "${info_uninstall_detected_elementary:?} ${elementary_mowish_local_path:?}"
+
+		return 1
+	fi
+
+	return 0;
+}
+
+function detectThunarAction(){
+	if [[ -e  "${thunar_mowish_local_path:?}" ]] && grep -q "mowish" "${thunar_mowish_local_path:?}" ; then 
+		infomsg "${info_uninstall_detected_thunar:?} ${thunar_mowish_local_path:?}"
 
 		return 1
 	fi
@@ -115,6 +125,10 @@ unemo=$?
 detectElementaryContract
 uelementary=$?
 
+detectThunarContract
+uthunar=$?
+
+
 infomsg "${info_uninstall_ask:?}"
 
 read -r confirm 
@@ -178,6 +192,16 @@ if (( uelementary==1 )); then
 	status=$?
 	if (( status!=0 )); then 
 		error "${info_uninstall_err_elementary:?}"
+    	exit 255
+	fi
+fi
+
+if (( uthunar==1 )); then 
+	infomsg "${info_uninstall_deleting_thunar:?}"
+	deleteThunarAction
+	status=$?
+	if (( status!=0 )); then 
+		error "${info_uninstall_err_thunar:?}"
     	exit 255
 	fi
 fi
