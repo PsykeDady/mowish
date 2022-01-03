@@ -170,7 +170,17 @@ rm /usr/share/contractor/mowish.contract
 ```
 
 #### Azione thunar
-Aprire il file 
+Aprire il file `$HOME/.config/Thunar/uca.xml` ed eliminare le righe: 
+```xml
+<action>
+	<icon>object-group</icon>
+	<name>Organizza Cartella</name>
+	<command>mowish %f</command>
+	<description>Organizza Cartella</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+```
 
 ## Uso
 
