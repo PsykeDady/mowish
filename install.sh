@@ -255,7 +255,7 @@ function thunarAction(){
 				}
 		} 
 		END {
-				print(last_action";"row_mowish";"last_action_end";"NR-last_action_end);
+				print((last_action-1)";"row_mowish";"last_action_end";"NR-last_action_end);
 		}' "${thunar_mowish_local_path:?}")
 		echo -e "$nlf";
 		headuca=$(cut -d ';' -f1 <<< "$nlf");echo -e "headuca $headuca";
