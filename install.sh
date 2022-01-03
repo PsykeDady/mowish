@@ -235,7 +235,7 @@ function thunarAction(){
 			return 0 
 		fi
 
-		thunar_mowish_local_path;
+		deleteThunarAction
 
 	fi
 	nl=$(grep -c "" "${thunar_mowish_local_path:?}"| cut -d' ' -f1)
