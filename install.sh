@@ -245,7 +245,6 @@ function thunarAction(){
 						mowish_section=1;
 				}
 				if( mowish_section==0 ) {
-						print $0;
 						if($0=="<action>")
 								last_action=NR; 
 				} else if(mowish_section==1) {
