@@ -259,8 +259,8 @@ function thunarAction(){
 				print(last_action";"row_mowish";"last_action_end";"NR-last_action_end);
 		}' "${thunar_mowish_local_path:?}")
 
-		headuca=$(cut -d ';' -f1 <<< "$mlf");
-		tailuca=$(cut -d ';' -f4 <<< "$mlf");
+		headuca=$(cut -d ';' -f1 <<< "$nlf");echo headuca;
+		tailuca=$(cut -d ';' -f4 <<< "$nlf");echo tailuca;
 
 		infomsg "$headuca\n$tailuca" | tee "${thunar_mowish_local_path:?}"
 
