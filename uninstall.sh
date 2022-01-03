@@ -125,7 +125,7 @@ unemo=$?
 detectElementaryContract
 uelementary=$?
 
-detectThunarContract
+detectThunarAction
 uthunar=$?
 
 
