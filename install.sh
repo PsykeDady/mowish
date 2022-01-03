@@ -261,6 +261,9 @@ function thunarAction(){
 		headuca=$(cut -d ';' -f1 <<< "$nlf");echo -e "headuca $headuca";
 		tailuca=$(cut -d ';' -f4 <<< "$nlf");echo -e "tailuca $tailuca";
 
+		headuca=$(head -"$headuca" "${thunar_mowish_local_path:?}");echo -e "headuca $headuca";
+		tailuca=$(tail -"$tailuca" "${thunar_mowish_local_path:?}");echo -e "tailuca $tailuca";
+
 		infomsg "$headuca\n$tailuca" | tee "${thunar_mowish_local_path:?}"
 
 	fi
