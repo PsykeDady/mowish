@@ -257,12 +257,12 @@ function thunarAction(){
 		END {
 				print((last_action-1)";"row_mowish";"last_action_end";"NR-last_action_end);
 		}' "${thunar_mowish_local_path:?}")
-		echo -e "$nlf";
-		headuca=$(cut -d ';' -f1 <<< "$nlf");echo -e "headuca $headuca";
-		tailuca=$(cut -d ';' -f4 <<< "$nlf");echo -e "tailuca $tailuca";
 
-		headuca=$(head -"$headuca" "${thunar_mowish_local_path:?}");echo -e "headuca $headuca";
-		tailuca=$(tail -"$tailuca" "${thunar_mowish_local_path:?}");echo -e "tailuca $tailuca";
+		headuca=$(cut -d ';' -f1 <<< "$nlf");
+		tailuca=$(cut -d ';' -f4 <<< "$nlf");
+
+		headuca=$(head -"$headuca" "${thunar_mowish_local_path:?}");
+		tailuca=$(tail -"$tailuca" "${thunar_mowish_local_path:?}");
 
 		infomsg "$headuca\n$tailuca" | tee "${thunar_mowish_local_path:?}"
 
