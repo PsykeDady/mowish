@@ -109,7 +109,7 @@ export info_install_ask_thunar="\nThunar file manager detected. Install script m
 export info_install_thunar_local_warning="NOTE THAT: is not possible to install thunar context menu globally. Please repeat installation for each users."
 export info_install_uca_not_exists="uca.xml file not exists. It will be created"
 export info_install_thunar_exists="Thunar action already exists, overwrite? [Y/n]"
-export info_install_thunar_print="writing this contract for thunar:\n"
+export info_install_thunar_print="writing this action for thunar:\n"
 
 
 ### uninstall
