@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ -t 0 ]; then
+    stty_save=$(stty -g 2>/dev/null)
+    if [ -n "$stty_save" ]; then
+        if ! stty -a 2>/dev/null | grep -q 'icrnl'; then
+            stty icrnl 2>/dev/null
+        fi
+    fi
+fi
+
 # This file is part of "MOWISH" by PsykeDady
 # released under GPLv3. Read LICENSE file or footer of mowi.sh file
 
@@ -207,5 +216,9 @@ if (( uthunar==1 )); then
 fi
 
 infomsg "${info_uninstall_done:?}"
+
+if [ -t 0 ] && [ -n "$stty_save" ]; then
+    stty "$stty_save" 2>/dev/null
+fi
 
 exit 0
