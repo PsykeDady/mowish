@@ -26,11 +26,27 @@ function loadTranslation() {
 	source "$translation_source"
 }
 
-function detectDolphinService(){
-	if [[ -e "${kservices_mowish_local_path:?}" ]]; then
-		infomsg "${info_uninstall_detected_dolphin_service:?} ${kservices_mowish_local_path:?}"
+function dolphinServiceCandidates() {
+	local xdg_data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
+	printf '%s\n' \
+		"$xdg_data_home/kio/servicemenus/${dolphin_servicemenu_filename:?}" \
+		"$xdg_data_home/kservices5/ServiceMenus/${dolphin_servicemenu_filename:?}" \
+		"/usr/share/kio/servicemenus/${dolphin_servicemenu_filename:?}" \
+		"/usr/share/kservices5/${dolphin_servicemenu_filename:?}" \
+		"/usr/share/kservices/${dolphin_servicemenu_filename:?}"
+}
 
-		return 1;
+function detectDolphinService(){
+	dolphin_services_found=()
+	while IFS= read -r candidate; do
+		if [[ -e "$candidate" ]]; then
+			dolphin_services_found+=("$candidate")
+			infomsg "${info_uninstall_detected_dolphin_service:?} $candidate"
+		fi
+	done < <(dolphinServiceCandidates)
+
+	if (( ${#dolphin_services_found[@]} > 0 )); then
+		return 1
 	fi
 
 	return 0;
@@ -101,6 +117,8 @@ source "${UTILS_FILE:?}"
 
 loadTranslation
 
+dolphin_services_found=()
+
 infomsg "${info_uninstall_start:?}"
 
 executable=$(which mowish 2> /dev/null)
@@ -166,13 +184,20 @@ if (( status != 0 )) &&  [[ -d $installation_dir ]]; then
 fi
 
 if (( udolphin==1 )); then 
-	infomsg "sudo rm \"${kservices_mowish_local_path:?}\""
-	sudo rm "${kservices_mowish_local_path:?}"
-	status=$?
-	if (( status!=0 )); then 
-		error "${info_uninstall_err_dolphin:?}"
-    	exit 255
-	fi
+	for dolphin_service in "${dolphin_services_found[@]}"; do
+		if [[ "$dolphin_service" == "$HOME/"* ]]; then
+			infomsg "rm \"${dolphin_service}\""
+			rm "$dolphin_service"
+		else
+			infomsg "sudo rm \"${dolphin_service}\""
+			sudo rm "$dolphin_service"
+		fi
+		status=$?
+		if (( status!=0 )); then 
+			error "${info_uninstall_err_dolphin:?}"
+	    	exit 255
+		fi
+	done
 fi
 
 if (( unautilus==1 )); then 

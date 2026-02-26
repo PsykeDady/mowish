@@ -26,6 +26,28 @@ function loadTranslation() {
 	source "$translation_source"
 }
 
+function resolveDolphinServiceTarget() {
+	local candidate=""
+	local candidates=(
+		"${dolphin_servicemenu_user_local_path:?}/${dolphin_servicemenu_filename:?}"
+		"${dolphin_servicemenu_user_legacy_path:?}/${dolphin_servicemenu_filename:?}"
+		"${dolphin_servicemenu_system_local_path:?}/${dolphin_servicemenu_filename:?}"
+		"${dolphin_servicemenu_system_legacy_path:?}/${dolphin_servicemenu_filename:?}"
+		"${dolphin_servicemenu_system_very_legacy_path:?}/${dolphin_servicemenu_filename:?}"
+	)
+
+	for candidate in "${candidates[@]}"; do
+		if [[ -e "$candidate" ]]; then
+			kservices_mowish_local_path="$candidate"
+			kservices_local_path="$(dirname "$candidate")"
+			return 0
+		fi
+	done
+
+	kservices_local_path="${dolphin_servicemenu_user_local_path:?}"
+	kservices_mowish_local_path="${kservices_local_path:?}/${dolphin_servicemenu_filename:?}"
+}
+
 function dolphinService(){
 	which dolphin > /dev/null 2> /dev/null
 	status=$?
@@ -41,8 +63,14 @@ function dolphinService(){
 		return 0;
 	fi
 
+	resolveDolphinServiceTarget
+
 	if [[ ! -d "${kservices_local_path:?}" ]]; then 
-		sudo mkdir "${kservices_local_path:?}"
+		if [[ "${kservices_local_path:?}" == "$HOME/"* ]]; then
+			mkdir -p "${kservices_local_path:?}"
+		else
+			sudo mkdir -p "${kservices_local_path:?}"
+		fi
 		status=$?
 		if ((status!=0)); then 
 			return 255;
@@ -64,7 +92,13 @@ function dolphinService(){
 
 	infomsg "${info_install_dolphin_print:?}"
 
-	infomsg "$dolphinService" | sudo tee "${kservices_mowish_local_path:?}"
+	if [[ "${kservices_mowish_local_path:?}" == "$HOME/"* ]]; then
+		infomsg "$dolphinService" | tee "${kservices_mowish_local_path:?}" > /dev/null
+		chmod +x "${kservices_mowish_local_path:?}"
+	else
+		infomsg "$dolphinService" | sudo tee "${kservices_mowish_local_path:?}" > /dev/null
+		sudo chmod +x "${kservices_mowish_local_path:?}"
+	fi
 }
 
 function nautilusScript(){
@@ -321,6 +355,8 @@ if [[ ! -d /usr/share/mowish ]] || (( status != 0 )); then
    error "${info_install_err_cp:?}"
    exit 255;
 fi
+
+sudo chmod +x /usr/share/mowish/mowi.sh
 
 infomsg "sudo ln -sf /usr/share/mowish/mowi.sh /usr/bin/mowish" 
 

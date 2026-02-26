@@ -4,8 +4,14 @@
 # released under GPLv3. Read LICENSE file or footer of mowi.sh file
 
 ## PLACES
-export kservices_local_path="/usr/share/kservices5"
-export kservices_mowish_local_path="$kservices_local_path/mowish.desktop"
+export dolphin_servicemenu_user_local_path="${XDG_DATA_HOME:-$HOME/.local/share}/kio/servicemenus"
+export dolphin_servicemenu_user_legacy_path="${XDG_DATA_HOME:-$HOME/.local/share}/kservices5/ServiceMenus"
+export dolphin_servicemenu_system_local_path="/usr/share/kio/servicemenus"
+export dolphin_servicemenu_system_legacy_path="/usr/share/kservices5"
+export dolphin_servicemenu_system_very_legacy_path="/usr/share/kservices"
+export dolphin_servicemenu_filename="mowish.desktop"
+export kservices_local_path="$dolphin_servicemenu_user_local_path"
+export kservices_mowish_local_path="$kservices_local_path/$dolphin_servicemenu_filename"
 export kservices_resource_path="resources/mowish_dolphine.desktop"
 export nautilus_scripts_path="$HOME/.local/share/nautilus/scripts"
 export nautilus_mowish_resource="resources/mowish_nautilus.sh"
